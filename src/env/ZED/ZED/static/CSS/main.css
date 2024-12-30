@@ -1,0 +1,195 @@
+* {
+    font-family: montserrat;
+}
+
+body {
+    background: #f1fbff;
+}
+:root{
+    --bg-color:#1f242d;
+    --bg2-color:#323946;
+    --text-color:#fff;
+    --main-color:#267dffba;
+}
+/* //////////////////// */
+.navbar-nav a {
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color:var(--main-color);
+
+}
+.navbar-light .navbar-brand {
+    color: #000;
+    font-size: 25px;
+    font-weight: 700;
+}
+.navbar-brand i {
+    color:var(--main-color);
+}
+.navbar-brand span {
+    color:var(--main-color);
+}
+.navbar button {
+    height: 30px;
+    padding: 0px 20px 0px 20px;
+    color: var(--text-color);
+    background-color:var(--main-color);
+    font-size: 18px;
+    border-radius: 20px;
+    border-color: var(--main-color);
+    border-width: 1px;
+}
+.navbar button:hover {
+    color:var(--main-color);
+    background-color: var(--text-color);
+    transition-duration: 400ms;
+}
+
+
+/* ////////////////////////////// */
+.carousel-inner::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.503);
+    z-index: 1;
+}
+.section-padding {
+    padding: 100px 0;
+}
+.carousel-item {
+    height: 100vh;
+    min-height: 300px;
+}
+.carousel-caption {
+    margin-bottom: 220px;
+    bottom: 220px;
+    z-index: 2;
+}
+.carousel-caption h5 {
+    font-size: 70px;
+
+}
+.carousel-caption p {
+    width: 60%;
+    margin: auto;
+    font-size: 18px;
+    line-height: 1.9;
+}
+.w-100 {
+    height: 100vh;
+}
+/* ////////////////////////////////// */
+#sec #img_about img {
+    max-width: 100%;
+    height: auto;
+    animation: tahrekimg 4s ease-in-out infinite;
+}
+
+@keyframes tahrekimg {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-38px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+#sec .card-body .hed {
+    margin: 50px 0 50px;
+    text-align: left;
+    font-size: 50px;
+    font-weight: 700;
+    /* padding-top: 50px; */
+}
+#sec #img_about {
+    margin: 50px 0 50px;
+    padding-top: 50px;
+}
+#sec .card .btu3 button {
+    padding: 0px 30px 0px 30px;
+    height: 50px;
+    color: var(--main-color);
+    font-size: 18px;
+    border-radius: 20px;
+    border-color: var(--main-color);
+    border-width: 1px;
+}
+
+#sec .card .btu3 button:hover {
+    color: var(--text-color);
+    background-color: var(--main-color);
+    transition-duration: 400ms;
+
+}
+/* ///////////////////// */
+.services #iconnn img {
+    width: 60px;
+    height: 60px;
+}
+#ser .card h5 {
+    font-weight: bold;
+    font-size: 30px;
+    padding-left: 50px;
+    padding-top: 15px;
+
+}
+#ser .card h5:hover {
+    color: var(--main-color);
+    transition-duration: 400ms;
+}
+
+.services .card a {
+    text-decoration: none;
+    color: #000;
+}
+/* ////////////////////////////////// */
+
+/* ///////////////////// */
+
+/* ///////////// */
+
+#text2 button {
+    padding: 0px 30px 0px 30px;
+    height: 50px;
+    background-color: var(--main-color);
+    color: var(--text-color);
+    font-size: 15px;
+    border-radius: 20px;
+    border-color: var(--main-color);
+    border-width: 1px;
+}
+
+#text2 button:hover {
+    color: var(--main-color);
+    background-color: var(--text-color);
+    transition-duration: 400ms;
+
+}
+
+#text2 span {
+    color: var(--main-color);
+}
+/* /////////////////////////////// */
+#icon_text {
+    font-size: 25px;
+    padding-right: 50px;
+}
+
+.list-unstyled a {
+    text-decoration: none;
+}
+
+.card .card-img-top:hover {
+    box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.666);
+    transition-duration: 400ms;
+
+}

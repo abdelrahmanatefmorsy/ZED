@@ -1,43 +1,293 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>index</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{% static 'CSS/main.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
-<style>
-
-
-</style>
-
 <body>
-    
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">MySite</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
-                </li>
-            </ul>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><span><i class="bi bi-journal-code"></i>COU</span>RSES
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sec">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sec">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#ser">Sections</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services_cou">Services</a>
+                    </li>
+                    <li id="login" class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}"><button type="button">Login</button></a>
+                    </li>
+                    <li id="sign up" class="nav-item">
+                        <a class="nav-link" href="{% url 'signup' %}"><button id="sign up" type="button">Sign
+                                up</button></a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </nav>
+    </nav><br><br>
+    <!-- ********************************************** -->
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner ">
+            <div class="carousel-item active text-start">
+                <img src="static/img/hero-bg2.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-flex flex-column justify-content-center align-items-center text-center"
+                    style="top: 50%; transform: translateY(-50%);">
+                    <h5> Education Courses</h5>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Ab officiis ex sapiente odit quaerat dolorum.</p>
+                    <p><a href="#" class="btn btn-primary mt-3 btn-lg">more details</a></p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="static/img/hero-bg4.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-flex flex-column justify-content-center align-items-center text-center"
+                    style="top: 50%; transform: translateY(-50%);">
+                    <h5> Education Courses</h5>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Ab officiis ex sapiente odit quaerat dolorum.</p>
+                    <p><a href="#" class="btn btn-primary mt-3 btn-lg">more details</a></p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="static/img/hero-bg3.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-flex flex-column justify-content-center align-items-center text-center"
+                    style="top: 50%; transform: translateY(-50%);">
+                    <h5> Education Courses</h5>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Ab officiis ex sapiente odit quaerat dolorum.</p>
+                    <p><a href="#" class="btn btn-primary mt-3 btn-lg">more details</a></p>
 
-    <div class="container mt-5">
-        <h1>Welcome to MySite</h1>
-        <p>This is the index page.</p>
-    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div><br><br>
+    <!-- **************************** -->
+    <section id="sec">
+        <div class="container">
+            <div class="card mb-3 border-0" style="width: 100%; ">
+                <div class="row g-0">
+                    <div class="col-md-6 ">
+                        <div class="card-body " style="margin: 15px;">
+                            <h2 class="hed">About</h2>
+                            <h5 class="card-title fw-bold fs-1">We will give you future</h5>
+                            <p class="card-text fs-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima in
+                                quaerat
+                                ducimus aperiam odio
+                                tempore magnam quisquam necessitatibus consequatur vero corrupti repudiandae, eos
+                                voluptas
+                                provident?<br>Learn about
+                                Superintendent </p>
+                            <p class="btu3"><button type="button">Know more future</button></p>
+                        </div>
+                    </div>
+                    <div id="img_about" class="col-md-6 border-0 ">
+                        <img src="static/img/hero-img.png" class="img-fluid rounded-start" alt="..." width="100%"
+                            height="100%">
+                    </div>
+                    <!-- <div class="col-md-6 ">
+                    <div class="card-body "  style="margin: 15px;">
+                         <h5 class="card-title fw-bold fs-1">We will give you future</h5>
+                            <p class="card-text fs-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima in quaerat ducimus aperiam odio
+                               tempore magnam quisquam necessitatibus consequatur vero corrupti repudiandae, eos voluptas provident?<br><br>Learn about
+                                Superintendent Torlakson's initiatives to improve schools, including encouraging schools to become "Safe Havens," promoting
+                                 teaching, and leading the charge to improve career technical education and Math (STEM) 
+                                 education.</p>
+                             <p class="btu3"><button type="button">Know more future</button></p>
+                     </div>
+              </div> -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ************************************************************** -->
+    <section id="ser" class="services section-padding bg">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col ">
+                    <div class="card h-100 border-0" id="iconnn">
+                        <div class="d-flex"> <img src="static/img/books.png">
+                            <a href="">
+                                <h5 class="card-title">Study Coaching</h5>
+                            </a></div>
+                        <div class="card-body">
+                            <p class="card-text">This award is designed to give you a taster of teaching and prepare you
+                                to teach
+                                and
+                                will introduce</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col ">
+                    <div class="card h-100 border-0" id="iconnn">
+                        <div class="d-flex"><img src="static/img/task.png" alt="">
+                            <a href="">
+                                <h5 class="card-title">Learning Courses</h5>
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">This award is designed to give you a taster of teaching and prepare you
+                                to teach
+                                and
+                                will introduce</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col ">
+                    <div class="card h-100 border-0" id="iconnn">
+                        <div class="d-flex"><img src="static/img/book.png" alt="">
+                            <a href="">
+                                <h5 class="card-title">Study Coaching</h5>
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">This award is designed to give you a taster of teaching and prepare you
+                                to teach
+                                and
+                                will introduce</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ************************************************* -->
+    <section id="sec">
+        <div class="container">
+            <div class="card mb-3 border-0" style="width: 100%; ">
+                <div class="row g-0">
+                    <!-- <div class="col-md-6 ">
+            <div class="card-body " style="margin: 15px;">
+              <h2 class="hed">About</h2>
+              <h5 class="card-title fw-bold fs-1">We will give you future</h5>
+              <p class="card-text fs-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima in quaerat
+                ducimus aperiam odio
+                tempore magnam quisquam necessitatibus consequatur vero corrupti repudiandae, eos voluptas
+                provident?<br>Learn about
+                Superintendent </p>
+              <p class="btu3"><button type="button">Know more future</button></p>
+            </div>
+          </div> -->
+                    <div id="img_about" class="col-md-6 border-0 ">
+                        <img src="static/img/features.png" class="img-fluid rounded-start" alt="..." width="100%"
+                            height="100%">
+                    </div>
+                    <div class="col-md-6 ">
+                        <div class="card-body " style="margin: 15px;">
+                            <h2 class="hed">Our Advacedd Features</h2>
+                            <h5 class="card-title fw-bold fs-1">We will give you future</h5>
+                            <p class="card-text fs-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima in
+                                quaerat
+                                ducimus aperiam odio
+                                tempore magnam quisquam necessitatibus consequatur vero corrupti repudiandae, eos
+                                voluptas
+                                provident?<br>Learn about
+                                Superintendent </p>
+                            <p class="btu3"><button type="button">Know more future</button></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- **************************************************** -->
+    <!--services-->
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- ************************** -->
+    <footer class="bg-light text-dark py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 mb-4">
+                    <h5 fs-1 fw-bold>Append</h5>
+                    <p fs-3>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi, praesentium.</p>
+                    <div id="icon_text">
+                        <a href="#"> <i class="bi bi-facebook text-dark"></i></a>
+                        <a href="#"><i class="bi bi-twitter-x text-dark"></i></i></a>
+                        <a href="#"><i class="bi bi-linkedin text-dark"></i></a>
+                        <a href="#"><i class="bi bi-instagram text-dark"></i></a>
+                        <a href="#"><i class="bi bi-envelope-at-fill text-dark"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>Useful Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a id="mmmm" href="#" class="text-dark">Home</a></li>
+                        <li><a href="#" class="text-dark">About us</a></li>
+                        <li><a href="#" class="text-dark">Sections</a></li>
+                        <li><a href="#" class="text-dark">Terms of service</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>Our Services</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-dark">Mohamed</a></li>
+                        <li><a href="#" class="text-dark">Adel</a></li>
+                        <li><a href="#" class="text-dark">El-Sayed</a></li>
+                        <li><a href="#" class="text-dark">Hassan</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>Contact Us</h5>
+                    <p>Mohamed Ail Street<br>Dekernes_Dakahlia</p>
+                    <p><strong>Phone:</strong> 01096398096</p>
+                    <p><strong>Email:</strong> info@example.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+    </script>
+
+
+    <!-- <script src="js/bootstrap.bundle.js"></script> -->
+    <script src="main.js"></script>
+    <!--تحريك المحتوى عند الاسكرول-->
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+
 </body>
+
 </html>
