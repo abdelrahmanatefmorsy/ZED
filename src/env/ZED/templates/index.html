@@ -51,6 +51,7 @@
         </div>
     </nav><br><br>
     <!-- ********************************************** -->
+    {% block content %}
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner ">
             <div class="carousel-item active text-start">
@@ -225,53 +226,9 @@
         </div>
     </section>
     <!-- **************************************************** -->
-    <!--services-->
 
-
-    <!-- ************************** -->
-    <footer class="bg-light text-dark py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 mb-4">
-                    <h5 fs-1 fw-bold>Append</h5>
-                    <p fs-3>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi, praesentium.</p>
-                    <div id="icon_text">
-                        <a href="#"> <i class="bi bi-facebook text-dark"></i></a>
-                        <a href="#"><i class="bi bi-twitter-x text-dark"></i></i></a>
-                        <a href="#"><i class="bi bi-linkedin text-dark"></i></a>
-                        <a href="#"><i class="bi bi-instagram text-dark"></i></a>
-                        <a href="#"><i class="bi bi-envelope-at-fill text-dark"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-3 mb-4">
-                    <h5>Useful Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a id="mmmm" href="#" class="text-dark">Home</a></li>
-                        <li><a href="#" class="text-dark">About us</a></li>
-                        <li><a href="#" class="text-dark">Sections</a></li>
-                        <li><a href="#" class="text-dark">Terms of service</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3 mb-4">
-                    <h5>Our Services</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-dark">Mohamed</a></li>
-                        <li><a href="#" class="text-dark">Adel</a></li>
-                        <li><a href="#" class="text-dark">El-Sayed</a></li>
-                        <li><a href="#" class="text-dark">Hassan</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3 mb-4">
-                    <h5>Contact Us</h5>
-                    <p>Mohamed Ail Street<br>Dekernes_Dakahlia</p>
-                    <p><strong>Phone:</strong> 01096398096</p>
-                    <p><strong>Email:</strong> info@example.com</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-
+{% endblock content %}
+    {% include 'pages/footer.html' %}
 
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
@@ -282,11 +239,7 @@
     </script>
 
 
-    <!-- <script src="js/bootstrap.bundle.js"></script> -->
     <script src="main.js"></script>
-    <!--تحريك المحتوى عند الاسكرول-->
-    <script src="https://unpkg.com/scrollreveal"></script>
-
 
 </body>
 

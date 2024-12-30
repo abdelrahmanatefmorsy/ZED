@@ -152,8 +152,109 @@ body {
     color: #000;
 }
 /* ////////////////////////////////// */
+.services_team #doller {
+    width: 70px;
+    background-color: var(--main-color);
+    border-radius: 30px 0px 30px 0px;
+}
+.services_team #doller i {
+    font-size: 30px;
+    color: var(--text-color);
+}
+.services_team #iii {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.services_team button {
+    padding: 0px 30px 0px 30px;
+    height: 50px;
+    color: var(--main-color);
+    font-size: 18px;
+    border-radius: 20px;
+    border-color: var(--main-color);
+    border-width: 1px;
+}
 
+.services_team button:hover {
+    color: var(--text-color);
+    background-color: var(--main-color);
+    transition-duration: 400ms;
+
+}
+
+.services_team h5:hover {
+    color: var(--main-color);
+    transition-duration: 400ms;
+
+}
+.services_team #img_author{
+    border-radius: 50%;
+
+}
 /* ///////////////////// */
+#services_cou h2 {
+    margin: 50px 0 50px;
+    font-weight: 700;
+
+}
+
+#services_cou .card {
+    border: none;
+    margin-bottom: 130px;
+    height: 75%;
+    background-color: var(--text-color);
+    border-radius: 15px;
+    transition: .5s ease;
+}
+
+#services_cou .card .imge {
+    overflow: hidden;
+    width: 100%;
+    border-radius: 15px;
+
+}
+
+#services_cou .card-img-top {
+    transition: .5s ease;
+}
+
+#services_cou .card:hover {
+    box-shadow: 0 0 30px var(--main-color);
+}
+
+#services_cou .card:hover .card-img-top {
+    transform: scale(1.2) rotate(7deg);
+}
+
+#services_cou .card-body h5 {
+    font-weight: 700;
+    font-size: 24px;
+}
+
+#services_cou .card-body p {
+    color: #8b8e94;
+}
+
+#services_cou .hed {
+    text-align: center;
+    font-size: 50px;
+    padding-top: 50px;
+}
+
+#services_cou .btn{
+    border-radius: 64px;
+    box-shadow: 0 0 16px var(--main-color);
+    color: var(--bg2-color);
+    font-weight: 600;
+    padding: 6px 16px;
+    transition: .5s ease;
+    margin-bottom: 20px;
+    background-color: var(--main-color);
+}
+#services_cou .btn:hover{
+    box-shadow: none;
+}
 
 /* ///////////// */
 
