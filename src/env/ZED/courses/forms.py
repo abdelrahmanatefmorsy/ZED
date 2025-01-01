@@ -8,7 +8,7 @@ class CourseForm(forms.ModelForm):
     class Meta:
         model = Course
         fields = ['course_name', 'course_description', 'course_duration', 'course_image', 'price', 'course_type']
-        wedgets = {
+        widgets = {
             'course_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Course Name'}),
             'course_description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Course Description'}),
             'course_duration': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Course Duration'}),
