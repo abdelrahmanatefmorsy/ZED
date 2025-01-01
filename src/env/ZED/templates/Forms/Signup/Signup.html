@@ -8,8 +8,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <style>
+    * {
+    font-family: montserrat;
+}
     #signup {
-            width: 40%;
+            width: 50%;
             margin: auto;
             padding: 20px;
             border: 1px solid #ddd;
@@ -22,6 +25,16 @@
         margin-bottom: 20px;
     }
 
+    label {
+        font-weight: 600;
+    }
+    input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+        border: 2px solid #ddd;
+    }
     #but {
         text-align: center;
     }
@@ -34,11 +47,13 @@
     <div class="container mt-5">
         <div id="signup">
             <h2>Sign Up</h2>
-            <form method="post">
+            <div id="from">
+            <form  method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <div id="but"><button type="submit" class="btn btn-primary">Sign Up</button></div>
             </form>
+        </div>
         </div>
     </div><br><br><br>
 
