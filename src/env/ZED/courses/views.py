@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render , redirect
 from .models import  CourseDay , Course
 from .forms import CourseForm, UserForm, LoginForm
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
@@ -25,7 +26,16 @@ def login_view(request):
                 login(request, user)
                 return HttpResponseRedirect(reverse('Home'))
     return render(request, 'Forms/Login/Login.html', {'form': loginform})
-
+@login_required
+def add_course_view(request):
+    if request.method == 'POST':
+        form = CourseForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('showAllCourses')  # Redirect to a course list view or any other view
+    else:
+        form = CourseForm()
+    return render(request, 'Forms/Course/index.html', {'form': form})
 
 def signup_view(request):
     userform = UserForm()
@@ -43,3 +53,9 @@ def signup_view(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect('/')
+def ShowAllCourses(request):
+    courses = Course.objects.all()
+    return render(request, 'Courses/Courses.html', {'courses': courses})
+def Course_detail(request, course_id):
+    course = Course.objects.get(id=course_id)
+    return render(request, 'Courses/Course.html', {'course': course})

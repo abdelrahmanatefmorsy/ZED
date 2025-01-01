@@ -1,6 +1,6 @@
 from django.db import models
 from datetime import datetime
-
+from django.contrib.auth.models import User
 class Video(models.Model):
     video_title = models.CharField(max_length=100)
     video_description = models.TextField()
@@ -37,6 +37,7 @@ class Course(models.Model):
         ('security', 'security'),
         ('other', 'other'),
     ]
+    user = models.ManyToManyField(User, related_name='courses',null=True,blank=True)
     course_name = models.CharField(max_length=100)
     course_description = models.TextField()
     course_duration = models.IntegerField()

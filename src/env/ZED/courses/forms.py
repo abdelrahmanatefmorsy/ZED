@@ -24,7 +24,7 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ['username', 'password', 'email']
         wedgets = {
-            'password': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password', 'type': 'password'}),
+            'password': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password', 'type': 'Password'}),
             'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}),
             'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'}),
         }

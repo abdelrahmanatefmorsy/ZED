@@ -31,7 +31,7 @@
                         <a class="nav-link" href="#sec">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#sec">Courses</a>
+                        <a class="nav-link" href="{% url 'showAllCourses'%}">Courses</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#ser">Sections</a>
@@ -228,7 +228,7 @@
     <!-- **************************************************** -->
 
 {% endblock content %}
-    {% include 'pages/footer.html' %}
+    {% include 'Pages/footer.html' %}
 
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
