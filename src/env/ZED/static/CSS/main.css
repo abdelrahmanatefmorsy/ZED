@@ -290,7 +290,7 @@ body {
 }
 
 .card .card-img-top:hover {
-    box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.666);
+    box-shadow: 0 0 16px var(--main-color);
     transition-duration: 400ms;
 
 }
