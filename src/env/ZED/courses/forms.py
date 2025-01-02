@@ -1,5 +1,5 @@
 from django import forms
-from .models import  CourseDay, Course
+from .models import  CourseDay, Course , UserProfile
 from django.contrib.auth.models import User
 
 
@@ -16,7 +16,14 @@ class CourseForm(forms.ModelForm):
             'price': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Price'}),
             'course_type': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Course Type'}),
         }
-
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['profile_picture', 'data_birth']
+        widgets = {
+            'profile_picture': forms.FileInput(attrs={'class': 'form-control', 'placeholder': 'Profile Picture'}),
+            'data_birth': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Data Birth'}),
+        }
 
 
 class UserForm(forms.ModelForm):

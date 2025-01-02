@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render , redirect
-from .models import  CourseDay , Course
-from .forms import CourseForm, UserForm, LoginForm
+from .models import  CourseDay , Course, UserProfile
+from .forms import CourseForm, UserForm, LoginForm, UserProfileForm
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -61,3 +61,19 @@ def ShowAllCourses(request):
 def Course_detail(request, course_id):
     course = Course.objects.get(id=course_id)
     return render(request, 'Courses/Course.html', {'course': course})
+@login_required
+def update_profile_view(request):
+    user_profile, created = UserProfile.objects.get_or_create(user=request.user)
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, request.FILES, instance=user_profile)
+        if form.is_valid():
+            form.save()
+            return redirect('/')  # Redirect to a profile view or any other view
+    else:
+        form = UserProfileForm(instance=user_profile)
+    return render(request, 'Forms/Profile/update_profile.html', {'form': form})
+@login_required
+def Profile_view(request):
+    user_profile, created = UserProfile.objects.get_or_create(user=request.user)
+    user_courses = Course.objects.filter(publisher=request.user)
+    return render(request, 'User/Profile.html', {'profile': user_profile, 'courses': user_courses})

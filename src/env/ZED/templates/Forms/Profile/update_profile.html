@@ -1,0 +1,13 @@
+<!-- filepath: /root/ZED/src/env/ZED/templates/Forms/Profile/update_profile.html -->
+{% extends 'Pages/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Update Profile</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Update Profile</button>
+    </form>
+</div>
+{% endblock %}
