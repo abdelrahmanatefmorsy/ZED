@@ -4,51 +4,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Courses</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CSS/main.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <style>
-    #login-form {
-        width: 40%;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    h2 {
+        h2 {
         text-align: center;
         color: #267dffba;
         margin-bottom: 20px;
     }
-    #but {
+
+    #img_cou {
+        transform: translateY(0);
+
+    }
+
+    .card-body {
         text-align: center;
+
+    }
+
+    .card-title {
+        color: #267dffba;
+        font-weight: bold;
+    }
+
+    #doller .card-text {
+        padding-top: 10px;
+        font-size: 20px;
+
+    }
+
+    #doller .bi {
+        font-size: 20px;
+        color: #267dffba;
+    }
+
+    .btn-group .btn {
+        height: 30px;
+        padding: 0px 20px 0px 20px;
+        color: var(--text-color);
+        background-color: var(--main-color);
+        font-size: 18px;
+        border-radius: 20px;
+        border-color: var(--main-color);
+        border-width: 1px;
+        margin-top: 10px;
+    }
+
+    .btn-group .btn:hover {
+        color: var(--main-color);
+        background-color: var(--text-color);
+        transition-duration: 400ms;
+    }
+
+    #price {
+        display: flex;
+        justify-content: space-around;
     }
 </style>
+
 <body>
-    {% extends 'Pages/base.html' %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><span><i class="bi bi-journal-code"></i>COU</span>RSES
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'Home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sec">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'showAllCourses'%}">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#ser">Sections</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services_cou">Services</a>
+                    </li>
+                    <li id="login" class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}"><button type="button">Logout</button></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav><br><br><br><br><br>
     {% block content %}
     <br><br>
-    
+
     <div class="container">
-        <h2>Courses</h2>
-        {% if user.is_authenticated %}
-            <a href="{% url 'add_course' %}" class="btn btn-primary mb-3">Add Course</a>
-        {% else %}
-            <a href="{% url 'login' %}" class="btn btn-primary mb-3">Login</a>
-        {% endif %}
+        <h2>Courses</h2><br><br>
         <div class="row">
             {% for course in courses %}
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    <img src="{{ course.course_image.url }}" class="card-img-top" alt="{{ course.course_name }}">
+            <div class="col-md-4 ">
+                <div class="card mb-4 border-0">
+                    <div id="img_cou"><img src="{{ course.course_image.url }}" class="card-img-top"
+                            alt="{{ course.course_name }}"></div>
                     <div class="card-body">
                         <h5 class="card-title">{{ course.course_name }}</h5>
                         <p class="card-text">{{ course.course_description }}</p>
-                        <p class="card-text"><strong>Price: </strong>${{ course.price }}</p>
-                        <div class="d-flex justify-content-between align-items-center">
+                        <div id="price">
                             <div class="btn-group">
-                                <a href="{% url 'course_detail' course.id %}" class="btn btn-sm btn-outline-secondary">View Details</a>
+                                <a href="{% url 'course_detail' course.id %}"
+                                    class="btn btn-sm btn-outline-secondary">View Details</a>
+                            </div>
+                            <div id="doller">
+                                <p class="card-text">{{ course.price }}
+                                    <i class="bi bi-currency-dollar"></i></p>
                             </div>
                         </div>
                     </div>
@@ -56,8 +128,14 @@
             </div>
             {% endfor %}
         </div>
+        {% if user.is_authenticated %}
+        <a href="{% url 'add_course' %}" class="btn btn-primary mb-3">Add Course</a>
+        {% else %}
+        <a href="{% url 'login' %}" class="btn btn-primary mb-3">Login</a>
+        {% endif %}
     </div>
     {% endblock %}
+    {% include 'Pages/footer.html' %}
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

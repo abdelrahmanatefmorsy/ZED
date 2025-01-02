@@ -1,20 +1,73 @@
 <!-- filepath: /root/ZED/src/env/ZED/templates/courses/add_course.html -->
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Course</title>
+    <link rel="stylesheet" href="{% static 'CSS/main.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
 </head>
+<style>
+    #form_cou {
+        width: 50%;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+        text-align: center;
+        color: #267dffba;
+        margin-bottom: 20px;
+    }
+</style>
 <body>
-    <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><span><i class="bi bi-journal-code"></i>COU</span>RSES
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'Home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sec">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'showAllCourses'%}">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#ser">Sections</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services_cou">Services</a>
+                    </li>
+                    <li id="login" class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}"><button type="button">Logout</button></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav><br><br><br><br><br>
+    {% block content %}
+    <div id="form_cou" class="container">
         <h2>Add Course</h2>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit" class="btn btn-primary">Add Course</button>
         </form>
-    </div>
+    </div><br><br><br>
+{% endblock content %}
+    {% include 'Pages/footer.html' %}
 </body>
 </html>
