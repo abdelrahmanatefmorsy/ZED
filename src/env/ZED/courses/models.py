@@ -19,7 +19,12 @@ class CourseDay(models.Model):
 
     def str(self):
         return self.day_title
-
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile_picture = models.ImageField(upload_to='profile_pictures/%Y/%m/%d/', blank=True)
+    data_birth = models.DateField()
+    def str(self):
+        return self.user.username
 class Course(models.Model):
     COURSE_TYPE_CHOICES = [
         ('user_created', 'User Created'),
