@@ -84,6 +84,7 @@ h1 {
             <div class = "img_container">
             <img src="{{ course.course_image.url }}" class="card-img" alt="{{ course.course_name }}"></div>
             <div class="card-body">
+                <p class="card-text"><strong>Publisher:</strong> {{ course.publisher }}</p>
                 <p class="card-text"><strong>Description:</strong> {{ course.course_description }}</p>
                 <p class="card-text"><strong>Duration:</strong> {{ course.course_duration }} hours</p>
                 <p class="card-text"><strong>Price:</strong> ${{ course.price }}</p>

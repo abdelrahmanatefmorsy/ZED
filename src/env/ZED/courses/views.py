@@ -31,7 +31,9 @@ def add_course_view(request):
     if request.method == 'POST':
         form = CourseForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            course = form.save(commit=False)
+            course.publisher = request.user
+            course.save()
             return redirect('showAllCourses')  # Redirect to a course list view or any other view
     else:
         form = CourseForm()

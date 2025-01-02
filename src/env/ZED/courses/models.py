@@ -37,7 +37,7 @@ class Course(models.Model):
         ('security', 'security'),
         ('other', 'other'),
     ]
-    user = models.ManyToManyField(User, related_name='courses',null=True,blank=True)
+    publisher = models.ForeignKey(User, related_name='courses', on_delete=models.CASCADE, null=True, blank=True)
     course_name = models.CharField(max_length=100)
     course_description = models.TextField()
     course_duration = models.IntegerField()
@@ -45,6 +45,5 @@ class Course(models.Model):
     created_at = models.DateTimeField(default=datetime.now, blank=True)
     price = models.IntegerField()
     course_type = models.CharField(max_length=20, choices=COURSE_TYPE_CHOICES, default='apply')
-
     def str(self):
         return self.course_name
