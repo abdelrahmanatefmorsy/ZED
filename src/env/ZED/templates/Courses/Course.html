@@ -14,7 +14,6 @@
         margin-top: 50px;
         margin-bottom: 50px;
         width: 50%;
-        margin-left: 25%;
     }
     h2 {
         text-align: center;
@@ -38,7 +37,11 @@ h1 {
     font-weight: bold;
     text-transform: uppercase;
 }
-
+.img_container {
+    width: 50%;
+    height: auto;
+    
+}
 </style>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -77,14 +80,13 @@ h1 {
     <br><br>
         <div class="container mt-5">
             <h1 class="card-title text-center">{{ course.course_name }}</h1>
-            <div class="card border-0">
-            <img src="{{ course.course_image.url }}" class="card-img" alt="{{ course.course_name }}" >
+            <div class="card border">
+            <div class = "img_container">
+            <img src="{{ course.course_image.url }}" class="card-img" alt="{{ course.course_name }}"></div>
             <div class="card-body">
-                <h2 class="card-title text-center">{{ course.course_name }}</h2>
                 <p class="card-text"><strong>Description:</strong> {{ course.course_description }}</p>
                 <p class="card-text"><strong>Duration:</strong> {{ course.course_duration }} hours</p>
                 <p class="card-text"><strong>Price:</strong> ${{ course.price }}</p>
-                <p class="card-text"><strong>Type:</strong> {{ course.get_course_type_display }}</p>
                 <p class="card-text"><strong>Category:</strong> {{ course.get_catogries_choicses_display }}</p>
                 <p class="card-text"><strong>Created At:</strong> {{ course.created_at }}</p>
             </div>
