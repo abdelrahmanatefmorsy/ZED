@@ -1,35 +1,79 @@
 <!-- filepath: /root/ZED/src/env/ZED/templates/User/Profile.html -->
 
-<div class="container">
-    <h2>User Profile</h2>
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">{{ profile.user.username }}</h5>
-            <p class="card-text"><strong>Email:</strong> {{ profile.user.email }}</p>
-            <p class="card-text"><strong>Date of Birth:</strong> {{ profile.data_birth }}</p>
-            <p class="card-text"><strong>Profile Picture:</strong></p>
-            {% if profile.profile_picture %}
-                <img src="{{ profile.profile_picture.url }}" alt="Profile Picture" class="img-thumbnail" width="150">
-            {% else %}
-                <p>No profile picture available.</p>
-            {% endif %}
-            <a href="{% url 'update_profile' %}" class="btn btn-primary mt-3">Edit Profile</a>
-        </div>
-    </div>
-    <h3 class="mt-4">Published Courses</h3>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        {% for course in courses %}
-        <div class="col">
-            <div class="card h-100">
-                <img src="{{ course.course_image.url }}" class="card-img-top" alt="{{ course.course_name }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ course.course_name }}</h5>
-                    <p class="card-text">{{ course.course_description }}</p>
-                    <p class="card-text"><strong>Price:</strong> ${{ course.price }}</p>
-                    <a href="{% url 'course_detail' course.id %}" class="btn btn-primary">View Details</a>
-                </div>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CSS/main.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<style>
+    .ttt {
+        color: #267dffba;
+        font-weight: bold;
+    }
+    .card{
+        margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    /* .card #img_team:hover {
+    box-shadow: 0 0 16px var(--main-color);
+    transition-duration: 400ms;
+} */
+</style>
+
+<body>
+    {% include 'Pages/navbar.html' %}
+    {% block content %}
+    <br><br>
+    <div class="container">
+        <h2>User Profile</h2>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ profile.user.username }}</h5>
+                <p class="card-text"><strong>Email:</strong> {{ profile.user.email }}</p>
+                <p class="card-text"><strong>Date of Birth:</strong> {{ profile.data_birth }}</p>
+                <p class="card-text"><strong>Profile Picture:</strong></p>
+                {% if profile.profile_picture %}
+                    <img src="{{ profile.profile_picture.url }}" alt="Profile Picture" class="img-thumbnail" width="150">
+                {% else %}
+                    <p>No profile picture available.</p>
+                {% endif %}
+                <a href="{% url 'update_profile' %}" class="btn btn-primary mt-3">Edit Profile</a>
             </div>
         </div>
-        {% endfor %}
-    </div>
-</div>
+        <h3 class="mt-4">Published Courses</h3>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for course in courses %}
+            <div class="col">
+                <div class="card h-100">
+                    <img src="{{ course.course_image.url }}" class="card-img" alt="{{ course.course_name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ course.course_name }}</h5>
+                        <p class="card-text">{{ course.course_description }}</p>
+                        <p class="card-text"><strong>Price:</strong> ${{ course.price }}</p>
+                        <a href="{% url 'course_detail' course.id %}" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div><br><br><br>
+    
+
+    {% endblock %}
+    {% include 'Pages/footer.html' %}
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

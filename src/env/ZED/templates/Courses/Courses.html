@@ -30,8 +30,6 @@
 <body>
     {% include 'Pages/navbar.html' %}
     {% block content %}
-    <br><br>
-
     <!-- <div class="container">
         <h2>Courses</h2><br><br>
         <div class="row">
@@ -67,13 +65,13 @@
     <section id="team" class="services_team section-padding bg">
         <div class="container">
             <p class="ttt fs-1 fw-bold text-center">Courses</p>
-            <form class="d-flex">
+            <p class="fs-1 fw-bold text-center"><img src="../static/img/book2.png" alt="" width="50px" height="50px">
+            </p> 
+            <form class="d-flex" style="height: 60px; width: 35%; ">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <div style="padding-top: 5px;"><button class="btn btn-outline-success"
+                <div ><button style="height: 38px;" class="btn btn-outline-success"
                         type="submit">Search</button></div>
             </form>
-            <p class="fs-1 fw-bold text-center"><img src="../static/img/book2.png" alt="" width="50px" height="50px">
-            </p>
             <div class="row row-cols-1 row-cols-md-3 g-4 b b">
                 {% for course in courses %}
                 <div class="col ">
@@ -83,7 +81,7 @@
                         </div>
                         <div class="card-body text-center">
                             <h5 class="card-title fs-3 fw-bold">{{ course.course_name }}</h5>
-                            <p class="card-text">{{ course.course_description }}</p>
+                            <!-- <p class="card-text">{{ course.course_description }}</p> -->
                             <div id="iii">
                                 <div id="doller"><i class="bi bi-journal-code"></i></div>
                                 <div>
