@@ -10,39 +10,53 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <style>
-    .card{
+    /* .card {
         margin-top: 50px;
         margin-bottom: 50px;
-        width: 50%;
-    }
+        width: 80%;
+    } */
+
     h2 {
         text-align: center;
         color: #267dffba;
         margin-bottom: 20px;
     }
+
     #but {
         text-align: center;
     }
-    .card .card-img:hover {
+
+    /* .card .card-img:hover {
     box-shadow: 0 0 16px var(--main-color);
     transition-duration: 400ms;
-}
-.card-text {
-    font-size: 20px;
-}
-h1 {
-    text-align: center;
-    color: #267dffba;
-    margin-top: 50px;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-.img_container {
+} */
+    .card-text {
+        font-size: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        color: #267dffba;
+        margin-top: 50px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    /* .img_container {
     width: 50%;
     height: auto;
     
-}
+} */
+    .card_small {
+        width: 80%;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 </style>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container">
@@ -75,10 +89,10 @@ h1 {
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav><br><br>
     {% block content %}
     <br><br>
-        <div class="container mt-5">
+    <!-- <div class="container mt-5">
             <h1 class="card-title text-center">{{ course.course_name }}</h1>
             <div class="card border">
             <div class = "img_container">
@@ -92,7 +106,94 @@ h1 {
                 <p class="card-text"><strong>Created At:</strong> {{ course.created_at }}</p>
             </div>
             </div>
-    </div>
+        </div>
+     -->
+    <section id="sec">
+        <div class="container">
+            <div class="card mb-3 border-0" style="width: 100%; ">
+                <div class="row g-0">
+                    <div class="col-md-6 ">
+                        <!-- <div class="card-body " style="margin: 15px;">
+                            <h2 class="hed">About</h2>
+                            <h5 class="card-title fw-bold fs-1">We will give you future</h5>
+                            <p class="card-text fs-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima in
+                                quaerat
+                                ducimus aperiam odio
+                                tempore magnam quisquam necessitatibus consequatur vero corrupti repudiandae, eos
+                                voluptas
+                                provident?<br>Learn about
+                                Superintendent </p>
+                            <p class="btu3"><button type="button">Know more future</button></p>
+                        </div> -->
+                        <h1 class="hed text-center">{{ course.course_name }}</h1><br>
+                        <div class="card_small border-0">
+                            <div class="img_container">
+                                <img src="{{ course.course_image.url }}" class="card-img"
+                                    alt="{{ course.course_name }}"></div>
+                            <div class="card-body">
+                                <!-- <p class="card-text"><strong>Publisher:</strong> {{ course.publisher }}</p>
+                <p class="card-text"><strong>Description:</strong> {{ course.course_description }}</p>
+                <p class="card-text"><strong>Duration:</strong> {{ course.course_duration }} hours</p>
+                <p class="card-text"><strong>Price:</strong> ${{ course.price }}</p>
+                <p class="card-text"><strong>Category:</strong> {{ course.get_catogries_choicses_display }}</p>
+                <p class="card-text"><strong>Created At:</strong> {{ course.created_at }}</p> -->
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="list-group" id="list-tab" role="tablist">
+                                            <a class="list-group-item list-group-item-action active" id="list-home-list"
+                                                data-bs-toggle="list" href="#list-home" role="tab"
+                                                aria-controls="list-home">Publisher</a>
+                                            <a class="list-group-item list-group-item-action" id="list-profile-list"
+                                                data-bs-toggle="list" href="#list-profile" role="tab"
+                                                aria-controls="list-profile">Description</a>
+                                            <a class="list-group-item list-group-item-action" id="list-messages-list"
+                                                data-bs-toggle="list" href="#list-messages" role="tab"
+                                                aria-controls="list-messages">Duration</a>
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list"
+                                                data-bs-toggle="list" href="#list-settings" role="tab"
+                                                aria-controls="list-settings">Price</a>
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list"
+                                                data-bs-toggle="list" href="#list-Category" role="tab"
+                                                aria-controls="list-settings">Category</a>
+                                            <a class="list-group-item list-group-item-action" id="list-settings-list"
+                                                data-bs-toggle="list" href="#list-CreatedAt" role="tab"
+                                                aria-controls="list-settings">Created At</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-8">
+                                        <div class="tab-content" id="nav-tabContent">
+                                            <div class="tab-pane fade show active" id="list-home" role="tabpanel"
+                                                aria-labelledby="list-home-list">{{ course.publisher }}</div>
+                                            <div class="tab-pane fade" id="list-profile" role="tabpanel"
+                                                aria-labelledby="list-profile-list">{{ course.course_description }}
+                                            </div>
+                                            <div class="tab-pane fade" id="list-messages" role="tabpanel"
+                                                aria-labelledby="list-messages-list">{{ course.course_duration }} hours
+                                            </div>
+                                            <div class="tab-pane fade" id="list-settings" role="tabpanel"
+                                                aria-labelledby="list-settings-list">${{ course.price }}</div>
+                                            <div class="tab-pane fade" id="list-Category" role="tabpanel"
+                                                aria-labelledby="list-settings-list">
+                                                {{ course.get_catogries_choicses_display }}</div>
+                                            <div class="tab-pane fade" id="list-CreatedAt" role="tabpanel"
+                                                aria-labelledby="list-settings-list">{{ course.created_at }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <p class="btu3 "><button type="button">Apply</button></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="img_about" class="col-md-6 border-0 ">
+                        <img src="{% static 'img/alt-features.png' %}" class="img-fluid rounded-start" alt="..."
+                            width="100%" height="100%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     {% endblock %}
     {% include 'Pages/footer.html' %}
 
