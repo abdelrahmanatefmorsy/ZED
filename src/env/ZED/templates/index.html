@@ -14,42 +14,7 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#"><span><i class="bi bi-journal-code"></i>COU</span>RSES
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
-                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#sec">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'showAllCourses'%}">Courses</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#ser">Sections</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#services_cou">Services</a>
-                    </li>
-                    <li id="login" class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}"><button type="button">Login</button></a>
-                    </li>
-                    <li id="sign up" class="nav-item">
-                        <a class="nav-link" href="{% url 'signup' %}"><button id="sign up" type="button">Sign
-                                up</button></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav><br><br>
+    {% include 'Pages/navbar.html' %}
     <!-- ********************************************** -->
     {% block content %}
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">

@@ -28,51 +28,7 @@
 </style>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#"><span><i class="bi bi-journal-code"></i>COU</span>RSES
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
-                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'Home' %}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#sec">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'showAllCourses'%}">Courses</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#ser">Sections</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#services_cou">Services</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            More
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">All course</a></li>
-                            <li><a class="dropdown-item" href="#">profile</a></li>
-                            <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
-                        </ul>
-                    </li>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <div style="padding-top: 5px;"><button class="btn btn-outline-success"
-                                type="submit">Search</button></div>
-                    </form>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    {% include 'Pages/navbar.html' %}
     {% block content %}
     <br><br>
 
@@ -111,6 +67,11 @@
     <section id="team" class="services_team section-padding bg">
         <div class="container">
             <p class="ttt fs-1 fw-bold text-center">Courses</p>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <div style="padding-top: 5px;"><button class="btn btn-outline-success"
+                        type="submit">Search</button></div>
+            </form>
             <p class="fs-1 fw-bold text-center"><img src="../static/img/book2.png" alt="" width="50px" height="50px">
             </p>
             <div class="row row-cols-1 row-cols-md-3 g-4 b b">
