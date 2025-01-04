@@ -15,5 +15,5 @@ urlpatterns = [
     path('course/<int:course_id>/', Course_detail, name='course_detail'),
     path('add-course/', add_course_view, name='add_course'),
     path('update-profile/', update_profile_view, name='update_profile'),
-    path('profile/', Profile_view, name='profile'),
+    path('profile/<str:username>/', Profile_view, name='profile'),
 ]

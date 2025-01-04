@@ -16,17 +16,72 @@
         color: #267dffba;
         font-weight: bold;
     }
-    .card{
-        margin: auto;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    .card {
+        /* margin: auto; */
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
-    /* .card #img_team:hover {
-    box-shadow: 0 0 16px var(--main-color);
-    transition-duration: 400ms;
-} */
+
+    h1 {
+        text-align: center;
+        color: #267dffba;
+        margin-bottom: 20px;
+        font: 1em sans-serif;
+    }
+
+    h2 {
+        margin-bottom: 30px;
+        font: 1em sans-serif;
+
+    }
+
+    p {
+        font: 1em sans-serif;
+        font-style: italic;
+        font-size: 20px;
+        margin-bottom: 30px;
+    }
+
+    .profile-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .profile-details p {
+        margin: 5px 0;
+    }
+
+    .profile-picture img {
+        border-radius: 8px;
+        width: 250px;
+    }
+
+    .links a {
+        display: block;
+        margin: 5px 0;
+        text-decoration: none;
+        color: #007bff;
+    }
+
+    .courses-container {
+        overflow-x: auto;
+        white-space: nowrap;
+        padding-bottom: 10px;
+    }
+
+    .courses-container .row {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    .courses-container .col {
+        flex: 0 0 auto;
+        margin-right: 15px;
+    }
 </style>
 
 <body>
@@ -34,27 +89,40 @@
     {% block content %}
     <br><br>
     <div class="container">
-        <h2>User Profile</h2>
+        <h1>User Profile</h1><br>
         <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">{{ profile.user.username }}</h5>
-                <p class="card-text"><strong>Email:</strong> {{ profile.user.email }}</p>
-                <p class="card-text"><strong>Date of Birth:</strong> {{ profile.data_birth }}</p>
-                <p class="card-text"><strong>Profile Picture:</strong></p>
-                {% if profile.profile_picture %}
-                    <img src="{{ profile.profile_picture.url }}" alt="Profile Picture" class="img-thumbnail" width="150">
-                {% else %}
+            <div class="profile-info">
+                <div class="profile-details">
+                    <h2>{{ profile.user.username }}</h2>
+                    {% if profile.user.username == request.user.username %}
+                    <p><strong>Email:</strong> {{ profile.user.email }} <span style="color: gray;">(not visible)</span>
+                    </p>
+                    {% endif %}
+                    <p><strong>Date of Birth:</strong> {{ profile.data_birth }} </p>
+                </div>
+                <div class="profile-picture">
+                    {% if profile.profile_picture %}
+                    <img src="{{ profile.profile_picture.url }}" alt="Profile Picture" class="img-thumbnail">
+                    {% else %}
                     <p>No profile picture available.</p>
-                {% endif %}
-                <a href="{% url 'update_profile' %}" class="btn btn-primary mt-3">Edit Profile</a>
+                    {% endif %}
+                    <div class="links">
+                        
+                        {% if profile.user.username == request.user.username %}
+                        <a href="{% url 'update_profile' %}">Edit Profile</a>
+                                         {% endif %}                 
+                                           </div>
+                </div>
             </div>
-        </div>
-        <h3 class="mt-4">Published Courses</h3>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
+        </div><br><br>
+
+
+        <h2 class="mt-4">Published Courses</h2><br>
+        <!-- <div class="row row-cols-1 row-cols-md-3 g-4">
             {% for course in courses %}
             <div class="col">
                 <div class="card h-100">
-                    <img src="{{ course.course_image.url }}" class="card-img" alt="{{ course.course_name }}">
+                    <img src="{{ course.course_image.url }}" class="card-img" alt="{{ course.course_name }}"height="250">
                     <div class="card-body">
                         <h5 class="card-title">{{ course.course_name }}</h5>
                         <p class="card-text">{{ course.course_description }}</p>
@@ -64,13 +132,40 @@
                 </div>
             </div>
             {% endfor %}
+        </div> -->
+        <div class="courses-container">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for course in courses %}
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="{{ course.course_image.url }}" class="card-img" alt="{{ course.course_name }}"
+                            height="250">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ course.course_name }}</h5>
+                            <p class="card-text"><strong>Price:</strong> ${{ course.price }}</p>
+                            <a href="{% url 'course_detail' course.id %}" class="btn btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+            
         </div>
     </div><br><br><br>
-    
+
 
     {% endblock %}
     {% include 'Pages/footer.html' %}
+    <script>
+        function scrollLeft() {
+            document.querySelector('.courses-container').scrollLeft -= 300;
+        }
 
+        function scrollRight() {
+            document.querySelector('.courses-container').scrollLeft += 300;
+        }
+    </script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

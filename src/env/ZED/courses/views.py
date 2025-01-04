@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render , redirect
+from django.shortcuts import render , redirect ,get_list_or_404, get_object_or_404
 from .models import  CourseDay , Course, UserProfile
 from .forms import CourseForm, UserForm, LoginForm, UserProfileForm
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
@@ -49,7 +49,7 @@ def signup_view(request):
             email = userform.cleaned_data['email']
             user = User.objects.create_user(username=username, password=password, email=email)
             login(request, user)
-            return HttpResponseRedirect('/')
+            return redirect('update_profile')
     return render(request, 'Forms/Signup/Signup.html', {'form': userform})
 
 def logout_view(request):
@@ -73,7 +73,8 @@ def update_profile_view(request):
         form = UserProfileForm(instance=user_profile)
     return render(request, 'Forms/Profile/update_profile.html', {'form': form})
 @login_required
-def Profile_view(request):
-    user_profile, created = UserProfile.objects.get_or_create(user=request.user)
-    user_courses = Course.objects.filter(publisher=request.user)
+def Profile_view(request, username):
+    user = get_object_or_404(User, username=username)
+    user_profile = get_object_or_404(UserProfile, user=user)
+    user_courses = Course.objects.filter(publisher=user)
     return render(request, 'User/Profile.html', {'profile': user_profile, 'courses': user_courses})

@@ -21,8 +21,8 @@ class CourseDay(models.Model):
         return self.day_title
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_picture = models.ImageField(upload_to='profile_pictures/%Y/%m/%d/', blank=True)
-    data_birth = models.DateField()
+    profile_picture = models.ImageField(upload_to='profile_pictures/%Y/%m/%d/', blank=True,null=True)
+    data_birth = models.DateField(null=True, blank=True)
     def str(self):
         return self.user.username
 class Course(models.Model):
