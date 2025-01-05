@@ -59,6 +59,24 @@
     {
         display-item:none;
     }
+    .two-btn{
+        text-align: center;
+        margin-top: 20px;
+        
+    }  
+    .two-btn a{
+        background-color: #00aef0;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        box-shadow: 0 0 15px #00aef0;
+        text-decoration: none;
+        margin: 10px;
+
+    }
+
 </style>
 
 <body>
@@ -86,32 +104,14 @@
             <div class="card mb-3 border-0" style="width: 100%; ">
                 <div class="row g-0">
                     <div class="col-md-6 ">
-                        <!-- <div class="card-body " style="margin: 15px;">
-                            <h2 class="hed">About</h2>
-                            <h5 class="card-title fw-bold fs-1">We will give you future</h5>
-                            <p class="card-text fs-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima in
-                                quaerat
-                                ducimus aperiam odio
-                                tempore magnam quisquam necessitatibus consequatur vero corrupti repudiandae, eos
-                                voluptas
-                                provident?<br>Learn about
-                                Superintendent </p>
-                            <p class="btu3"><button type="button">Know more future</button></p>
-                        </div> -->
                         <h1 class="hed text-center">{{ course.course_name }}</h1><br>
                         <div class="card_small border-0">
                             <div class="img_container">
                                 <img src="{{ course.course_image.url }}" class="card-img"
                                     alt="{{ course.course_name }}"></div>
                             <div class="card-body">
-                                <!-- <p class="card-text"><strong>Publisher:</strong> {{ course.publisher }}</p>
-                <p class="card-text"><strong>Description:</strong> {{ course.course_description }}</p>
-                <p class="card-text"><strong>Duration:</strong> {{ course.course_duration }} hours</p>
-                <p class="card-text"><strong>Price:</strong> ${{ course.price }}</p>
-                <p class="card-text"><strong>Category:</strong> {{ course.get_catogries_choicses_display }}</p>
-                <p class="card-text"><strong>Created At:</strong> {{ course.created_at }}</p> -->
                                 <div class="row">
-                                    <div class="col-4">
+                                    <div class="col-6">
                                         <div class="list-group" id="list-tab" role="tablist">
                                             <a class="list-group-item list-group-item-action active" id="list-home-list"
                                                 data-bs-toggle="list" href="#list-home" role="tab"
@@ -133,7 +133,7 @@
                                                 aria-controls="list-settings">Created At</a>
                                         </div>
                                     </div>
-                                    <div class="col-8">
+                                    <div class="col-6">
                                         <div class="tab-content" id="nav-tabContent">
                                             <div class="tab-pane fade show active" id="list-home" role="tabpanel"
                                                 aria-labelledby="list-home-list">{{ course.publisher }}</div>
@@ -153,25 +153,25 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div style="text-align: center;">
-                                    {% if user.is_authenticated %}
-                                    {% if course.publisher != request.user %}
-                                    <a href="{% url 'apply_to_course' course.id%}" class="btn btn-primary">Apply2</a>
-                                    {% endif %}
-                                    {% endif %}
-                                    {%if user.is_authenticated%}
-                                    {% if course.publisher == request.user %}
-                                    <a href="{% url 'update_course' course.id %}" class="btn btn-primary">Update Course</a>
-                                    {% comment %} <a href="{% url 'delete_course' course.id %}" class="btn btn-danger">Delete Course</a> {% endcomment %}
-                                    <a href="{% url 'upload_video' course.id %}" class="btn btn-primary">Add Videos</a>
-                                    {% endif %}
-                                    {%endif%}
-                                </div>
                             </div>
+                        </div>
+                        <div class="two-btn">
+                        {%if user.is_authenticated%}
+                            {% if course.publisher == request.user %}
+                            <a href="{% url 'update_course' course.id %}" class="btn ">Update Course</a>
+                            {% comment %} <a href="{% url 'delete_course' course.id %}" class="btn btn-danger">Delete Course</a> {% endcomment %}
+                            <a href="{% url 'upload_video' course.id %}" class="btn ">Add Videos</a>
+                            {% endif %}
+                            {%endif%}
+                            {% if user.is_authenticated %}
+                                    {% if course.publisher != request.user %}
+                                    <a href="{% url 'apply_to_course' course.id%}" class="btn">Apply</a>
+                                    {% endif %}
+                                    {% endif %}
                         </div>
                     </div>
                     <div id="img_about" class="col-md-6 border-0 ">
-                        <img src="{% static 'img/alt-features.png' %}" class="img-fluid rounded-start" alt="..."
+                        <img src="{% static 'img/OIP.png' %}" class="img-fluid rounded-start" alt="..."
                             width="100%" height="100%">
                     </div>
                 </div>

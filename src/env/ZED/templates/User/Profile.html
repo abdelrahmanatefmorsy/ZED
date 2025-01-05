@@ -74,6 +74,16 @@
         flex: 0 0 auto;
         margin-right: 15px;
     }
+    .btn-group {
+        background-color: #267dffba;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        box-shadow: 0 0 15px #267dffba;
+        text-decoration: none;
+    }
 </style>
 
 <body>
@@ -125,8 +135,8 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ course.course_name }}</h5>
                             <p class="card-text"><strong>Price:</strong> ${{ course.price }}</p>
-                            <a href="{% url 'course_detail' course.id %}" class="btn btn-primary">View Details</a>
-                            {% comment %} <a href="{% url 'upload_video'  %}" class="btn btn-primary">Add Videos</a> {% endcomment %}
+                            <a href="{% url 'course_detail' course.id %}" class="btn-group">View Details</a>
+                            {% comment %} <a href="{% url 'upload_video'  %}" class="btn-group">Add Videos</a> {% endcomment %}
                         </div>
                     </div>
                 </div>
@@ -137,7 +147,7 @@
         <p class="text-center text-muted">No courses published yet.</p>
         {% endif %}
         {% comment %} {% if my_course %} {% endcomment %}
-        <h2 class="mt-4">Applied Courses</h2><br>
+      <br><br>  <h2 class="mt-4">Applied Courses</h2><br>
         <div class="courses-container">
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 {% for apply in my_courses %}
@@ -148,7 +158,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ apply.course_name }}</h5>
                             <p class="card-text">For {{apply.publisher}}</p>
-                            <a href="{% url 'view_course_videos' apply.id %}" class="btn btn-primary">Go</a>
+                            <a href="{% url 'view_course_videos' apply.id %}" class="btn-group" >Go</a>
                         </div>
                     </div>
                 </div>

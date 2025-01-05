@@ -4,44 +4,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Courses</title>
+    <title>Videos</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'CSS/main.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <style>
-    .ttt {
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+    }
+
+    .watch-1 {
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 80%;
+    }
+
+    .lesson {
+        padding: 15px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .lesson:hover {
+        background-color: #f1f1f1;
+    }
+
+    .lesson-title {
+        font-weight: 600;
+        color: #333;
+    }
+
+    .lesson-description {
+        font-size: 1em;
+        color: #666;
+    }
+
+    a.watch-video {
+        background-color: #267dffba;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 15px;
+        text-decoration: none;
+    }
+
+    h2 {
         color: #267dffba;
         font-weight: bold;
     }
-    .card{
-        margin: auto;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    /* .card #img_team:hover {
-    box-shadow: 0 0 16px var(--main-color);
-    transition-duration: 400ms;
-} */
 </style>
 
 <body>
     {% include 'Pages/navbar.html' %}
     {% block content %}
-    <section id="team" class="services_team section-padding bg">
-      <h2>Videos</h2>
-      {% for video in videos %}
-        <div class="card">
-            <div class="card-body">
-            <h5 class="card-title">{{ video.video_title }}</h5>
-            <p class="card-text">{{ video.video_description }}</p>
-            <a href="{% url 'watch_video' video.id %}" class="btn btn-primary">Watch</a>
+    <br>
+    <div class="container mt-5">
+        <h2 class="text-center">Videos</h2>
+        <p class="fs-1 fw-bold text-center"><img src="/static/img/book2.png" alt="" width="50px" height="50px">
+            <div class="watch-1">
+                {% for video in videos %}
+                <div class="list-group">
+                    <div class="lesson d-flex justify-content-between align-items-center">
+                        <div>
+                            <h3 class="lesson-title">{{ video.video_title }}</h3>
+                            <h4 class="lesson-description">{{ video.video_description }}</h4>
+                        </div>
+                        <div>
+                            <a href="{% url 'watch_video' video.id %}" class=" btn watch-video">watch </a>
+                            <span> <img src="/static/img/task.png" alt="" height="50px" width="50px"></span>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
-        </div>
-        {% endfor %}
-    </section>
+    </div><br><br>
 
     {% endblock %}
     {% include 'Pages/footer.html' %}
