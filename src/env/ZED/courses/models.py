@@ -52,3 +52,18 @@ class Course(models.Model):
     course_type = models.CharField(max_length=20, choices=COURSE_TYPE_CHOICES, default='apply')
     def str(self):
         return self.course_name
+
+class Video(models.Model):
+    video_title = models.CharField(max_length=100)
+    video_description = models.TextField()
+    video_duration = models.IntegerField()
+    video = models.FileField(upload_to='videos/%Y/%m/%d/', blank=True)
+    created_at = models.DateTimeField(default=datetime.now, blank=True)
+    Course = models.ForeignKey('Course', related_name='videos', on_delete=models.CASCADE, null=True, blank=True)
+    def str(self):
+        return self.data_title
+class AppliedCourse(models.Model):
+    course = models.ForeignKey('Course', related_name='applied_courses', on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(User, related_name='applied_courses', on_delete=models.CASCADE, null=True, blank=True)
+    def str(self):
+        return self.course.course_name

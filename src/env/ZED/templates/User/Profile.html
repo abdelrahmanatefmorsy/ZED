@@ -152,6 +152,28 @@
             </div>
             
         </div>
+        {% comment %} {% if my_course %} {% endcomment %}
+        <h2 class="mt-4">Applied Courses</h2><br>
+        <div class="courses-container">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for apply in my_courses %}
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="{{ apply.course_image.url }}" class="card-img" alt="{{ apply.course_name }}"
+                            height="250">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ apply.course_name }}</h5>
+                            <p class="card-text"><strong>Price:</strong> ${{ apply.price }}</p>
+                            <a href="{% url 'course_detail' apply.id %}" class="btn btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+            
+        </div>
+        {% comment %} {% endif %} {% endcomment %}
     </div><br><br><br>
 
 

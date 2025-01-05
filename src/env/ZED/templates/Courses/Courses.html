@@ -30,38 +30,6 @@
 <body>
     {% include 'Pages/navbar.html' %}
     {% block content %}
-    <!-- <div class="container">
-        <h2>Courses</h2><br><br>
-        <div class="row">
-            {% for course in courses %}
-            <div class="col-md-4 ">
-                <div class="card mb-4 border-0">
-                    <div id="img_cou"><img src="{{ course.course_image.url }}" class="card-img-top"
-                            alt="{{ course.course_name }}"></div>
-                    <div class="card-body">
-                        <h5 class="card-title">{{ course.course_name }}</h5>
-                        <p class="card-text">{{ course.course_description }}</p>
-                        <div id="price">
-                            <div class="btn-group">
-                                <a href="{% url 'course_detail' course.id %}"
-                                    class="btn btn-sm btn-outline-secondary">View Details</a>
-                            </div>
-                            <div id="doller">
-                                <p class="card-text">{{ course.price }}
-                                    <i class="bi bi-currency-dollar"></i></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-        {% if user.is_authenticated %}
-        <a href="{% url 'add_course' %}" class="btn btn-primary mb-3">Add Course</a>
-        {% else %}
-        <a href="{% url 'login' %}" class="btn btn-primary mb-3">Login</a>
-        {% endif %}
-    </div> -->
     <section id="team" class="services_team section-padding bg">
         <div class="container">
             <p class="ttt fs-1 fw-bold text-center">Courses</p>
@@ -73,24 +41,27 @@
                         type="submit">Search</button></div>
             </form>
             <div class="row row-cols-1 row-cols-md-3 g-4 b b">
-                {% for course in courses %}
+                {% for course, profile in courses %}
                 <div class="col ">
                     <div class="card h-100">
                         <div  class="card_mmm"> <img height="250px" id="img_team" src="{{ course.course_image.url }}"
                                 class="card-img " alt="{{ course.course_name }}">
                         </div>
                         <div class="card-body text-center">
-                            <h5 class="card-title fs-3 fw-bold">{{ course.course_name }}</h5>
+                            <h5 class="card-title fs-4 fw-bold">{{ course.course_name }}</h5>
                             <!-- <p class="card-text">{{ course.course_description }}</p> -->
                             <div id="iii">
                                 <div id="doller"><i class="bi bi-journal-code"></i></div>
                                 <div>
                                     <p class="fs-3 fw-bold text-center text-primary"><img id="img_author"
-                                            src="../static/img/Profile-PNG-File.png" alt="" width="70px" height="70px"></p>
+                                            src="{{profile.profile_picture.url}}" alt="" width="70px" height="70px"></p>
                                 </div>
                                 <div id="doller"><i class="bi bi-currency-dollar">{{ course.price }}</i></div>
                             </div>
-                            <p class="fs-4  text-center">{{course.publisher}}</p>
+                            <!-- filepath: /root/ZED/src/env/ZED/templates/Courses/Courses.html -->
+                            <a href="{% url 'profile' course.publisher.username %}">
+                                <p class="fs-4 text-center">{{ course.publisher.username }}</p>
+                            </a>
                             <a href="{% url 'course_detail' course.id %}"><button type="button">View Details</button></a>
                         </div>
                     </div>

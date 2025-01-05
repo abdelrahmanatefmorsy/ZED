@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
-
+from .models import AppliedCourse
 def index(request):
     return render(request, 'index.html')
 
@@ -56,8 +56,16 @@ def logout_view(request):
     logout(request)
     return HttpResponseRedirect('/')
 def ShowAllCourses(request):
+    data = []
     courses = Course.objects.all()
-    return render(request, 'Courses/Courses.html', {'courses': courses})
+    profiles = UserProfile.objects.all()
+    for course in courses:
+        for profile in profiles:
+            if course.publisher == profile.user:
+                data.append((course, profile))
+    print(data[0][0].publisher)
+    return render(request, 'Courses/Courses.html', {'courses': data})
+
 def Course_detail(request, course_id):
     course = Course.objects.get(id=course_id)
     return render(request, 'Courses/Course.html', {'course': course})
@@ -74,7 +82,16 @@ def update_profile_view(request):
     return render(request, 'Forms/Profile/update_profile.html', {'form': form})
 @login_required
 def Profile_view(request, username):
+    my_courses = []
+    apllied_courses = AppliedCourse.objects.all();
+    courses = Course.objects.all()
+    if request.user.username == username:
+        for course in courses:
+            for applied_course in apllied_courses:
+                if applied_course.course == course:
+                    course.applied = True
+                    my_courses.append(course)
     user = get_object_or_404(User, username=username)
     user_profile = get_object_or_404(UserProfile, user=user)
     user_courses = Course.objects.filter(publisher=user)
-    return render(request, 'User/Profile.html', {'profile': user_profile, 'courses': user_courses})
+    return render(request, 'User/Profile.html', {'profile': user_profile, 'courses': user_courses,'my_courses': my_courses})
