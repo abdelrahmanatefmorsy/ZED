@@ -9,16 +9,21 @@
 </head>
 <style>
     * {
-    font-family: montserrat;
-}
+        font-family: montserrat;
+    }
+    .card-img {
+        height: 100vh;
+        object-fit: cover;
+    }
     #signup {
-            width: 30%;
-            margin: auto;
-            padding: 20px;
-            margin-right: 100px;
-            /* border: 1px solid #ddd; */
-            border-radius: 10px;
-        }
+        width: 40%;
+        margin: auto;
+        padding: 20px;
+        margin-right: 100px;
+        /* border: 1px solid #ddd; */
+        border-radius: 10px;
+    }
+
     h2 {
         text-align: center;
         color: #00aef0;
@@ -29,6 +34,7 @@
         font-weight: 600;
         color: #00aef0;
     }
+
     input {
         width: 100%;
         padding: 10px;
@@ -38,12 +44,15 @@
         box-shadow: 0 0 25px #00aef0;
 
     }
+
     #but {
         text-align: center;
     }
-    #id_password1{
+
+    #id_password1 {
         type: password;
     }
+
     #but button {
         background-color: #00aef0;
         color: white;
@@ -58,25 +67,24 @@
 <body>
     {% extends 'Pages/base.html' %}
     {% block content %}
-    <br>
-        <div class="card bg-dark text-white">
-            <img src="../static/img/bggg.jpg" class="card-img" alt="...">
-            <div class="card-img-overlay">
-                <div class="container mt-5">
-                    <div id="signup">
-                        <h2>Sign Up</h2>
-                        <div id="from">
-                        <form  method="post">
+    <div class="card bg-dark text-white">
+        <img src="../static/img/bggg.jpg" class="card-img" alt="...">
+        <div class="card-img-overlay">
+            <div class="container mt-5">
+                <div id="signup">
+                    <h2>Sign Up</h2>
+                    <div id="from">
+                        <form method="post">
                             {% csrf_token %}
                             {{ form.as_p }}
                             <div id="but"><button type="submit" class="btn">Sign Up</button></div>
                         </form>
                     </div>
-                    </div>
                 </div>
             </div>
-          </div>
-        <!-- <div id="signup">
+        </div>
+    </div>
+    <!-- <div id="signup">
             <h2>Sign Up</h2>
             <div id="from">
             <form  method="post">
