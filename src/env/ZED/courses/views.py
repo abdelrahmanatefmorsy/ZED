@@ -96,3 +96,11 @@ def Profile_view(request, username):
     user_profile = get_object_or_404(UserProfile, user=user)
     user_courses = Course.objects.filter(publisher=user)
     return render(request, 'User/Profile.html', {'profile': user_profile, 'courses': user_courses,'my_courses': my_courses})
+
+@login_required
+def apply_to_course(request, course_id):
+    course = get_object_or_404(Course, id=course_id)
+    if course.publisher != request.user:
+        if not AppliedCourse.objects.filter(course=course, user=request.user).exists():
+            AppliedCourse.objects.get_or_create(course=course, user=request.user)
+    return redirect('profile', username=request.user.username)
