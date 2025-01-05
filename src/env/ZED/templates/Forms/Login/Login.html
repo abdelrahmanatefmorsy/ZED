@@ -8,13 +8,17 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <style>
+    .card-body {
+        padding: 20px;
+        margin:auto
+    }
     #login-form {
-        width: 40%;
+        width: 60%;
             margin: auto;
             padding: 20px;
             border: 1px solid #ddd;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 15px #267dffba;
     }
     h2 {
         text-align: center;
@@ -23,14 +27,59 @@
     }
     #but {
         text-align: center;
+        
+    }
+    #but button {
+        background-color: #00aef0;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        box-shadow: 0 0 15px #00aef0;
+    }
+    #img-pro {
+        display: block;
+        margin: auto;
+        border-radius: 50%;
+        width: 100px;
+        height: 80px;
+
     }
 </style>
 <body>
     {% extends 'Pages/base.html' %}
     {% block content %}
     <br><br>
-    <div class="container mt-5">
+    <section id="sec">
+        <div class="container">
+            <div class="card mb-3 border-0" style="width: 100%; ">
+                <div class="row g-0">
+                    <div id="img_about" class="col-md-6 border-0 ">
+                        <img src="../static/img/join.webp" class="img-fluid rounded-start" alt="..." width="100%"
+                            height="80%">
+                    </div>
+                    <div class="col-md-6 ">
+                        <div class="card-body "><br><br>
+                                <div id="login-form">
+                                    <img id="img-pro" src="../static/img/login_pro.png" alt="Login Image ">
+                                    <h2>Login</h2>
+                                    <form method="post" action="{% url 'login' %}">
+                                        {% csrf_token %}
+                                        {{ form.as_p }}
+                                        <div id="but"><button type="submit" class="btn" >Login</button></div>
+                                    </form>
+                                </div>
+                            <br><br><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- <div class="container mt-5">
         <div id="login-form">
+            <img src="../static/img/login_pro.png" alt="Login Image ">
             <h2>Login</h2>
             <form method="post" action="{% url 'login' %}">
                 {% csrf_token %}
@@ -38,7 +87,7 @@
                 <div id="but"><button type="submit" class="btn btn-primary ">Login</button></div>
             </form>
         </div>
-    </div><br><br><br>
+    </div><br><br><br> -->
     {% endblock %}
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
