@@ -154,7 +154,18 @@
                                     </div>
                                 </div>
                                 <div style="text-align: center;">
-                                    <a href="{% url 'apply_to_course' course.id %}" class="btn btn-primary">Apply2</a>
+                                    {% if user.is_authenticated %}
+                                    {% if course.publisher != request.user %}
+                                    <a href="{% url 'apply_to_course' course.id%}" class="btn btn-primary">Apply2</a>
+                                    {% endif %}
+                                    {% endif %}
+                                    {%if user.is_authenticated%}
+                                    {% if course.publisher == request.user %}
+                                    <a href="{% url 'update_course' course.id %}" class="btn btn-primary">Update Course</a>
+                                    {% comment %} <a href="{% url 'delete_course' course.id %}" class="btn btn-danger">Delete Course</a> {% endcomment %}
+                                    <a href="{% url 'upload_video' course.id %}" class="btn btn-primary">Add Videos</a>
+                                    {% endif %}
+                                    {%endif%}
                                 </div>
                             </div>
                         </div>

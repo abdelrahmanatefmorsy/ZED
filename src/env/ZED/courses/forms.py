@@ -58,4 +58,3 @@ class VideoForm(forms.ModelForm):
             'video_duration': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Video Duration'}),
             'video': forms.FileInput(attrs={'class': 'form-control', 'placeholder': 'Video'}),
         }
-

@@ -125,7 +125,8 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ course.course_name }}</h5>
                             <p class="card-text"><strong>Price:</strong> ${{ course.price }}</p>
-                            <a href="{% url 'update_course' course.id %}" class="btn btn-primary">View Details</a>
+                            <a href="{% url 'course_detail' course.id %}" class="btn btn-primary">View Details</a>
+                            {% comment %} <a href="{% url 'upload_video'  %}" class="btn btn-primary">Add Videos</a> {% endcomment %}
                         </div>
                     </div>
                 </div>
@@ -146,8 +147,8 @@
                             height="250">
                         <div class="card-body">
                             <h5 class="card-title">{{ apply.course_name }}</h5>
-                            <p class="card-text"><strong>Price:</strong> ${{ apply.price }}</p>
-                            <a href="{% url 'course_detail' apply.id %}" class="btn btn-primary">View Details</a>
+                            <p class="card-text">For {{apply.publisher}}</p>
+                            <a href="{% url 'view_course_videos' apply.id %}" class="btn btn-primary">Go</a>
                         </div>
                     </div>
                 </div>

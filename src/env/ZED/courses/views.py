@@ -1,12 +1,12 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render , redirect ,get_list_or_404, get_object_or_404
 from .models import  CourseDay , Course, UserProfile
-from .forms import CourseForm, UserForm, LoginForm, UserProfileForm
-from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
+from .forms import CourseForm, UserForm, LoginForm, UserProfileForm ,VideoForm
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse , HttpResponseForbidden
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
-from .models import AppliedCourse
+from .models import AppliedCourse , Video
 def index(request):
     return render(request, 'index.html')
 
@@ -106,6 +106,8 @@ def apply_to_course(request, course_id):
     return redirect('profile', username=request.user.username)
 def update_course(request, course_id):
     course = get_object_or_404(Course, id=course_id)
+    if course.publisher != request.user:
+        return HttpResponse('You are not allowed to update this course')
     if request.method == 'POST':
         form = CourseForm(request.POST, request.FILES, instance=course)
         if form.is_valid():
@@ -114,3 +116,28 @@ def update_course(request, course_id):
     else:
         form = CourseForm(instance=course)
     return render(request, 'Forms/Course/index.html', {'form': form})
+@login_required
+def upload_video(request, course_id):
+    course = get_object_or_404(Course, id=course_id)
+    if course.publisher == request.user:
+        if request.method == 'POST':
+            form = VideoForm(request.POST, request.FILES)
+            if form.is_valid():
+                video = form.save(commit=False)
+                video.Course = course
+                video.save()
+                return redirect('/')  # Redirect to a course list view or any other view
+        else:
+            form = VideoForm()
+    else:
+        return HttpResponse('You are not allowed to upload videos to this course')
+    return render(request, 'Forms/Course/Videos.html', {'form': form})
+def view_course_videos(request, course_id):
+    course = get_object_or_404(Course, id=course_id)
+    if not AppliedCourse.objects.filter(course=course, user=request.user).exists():
+        return HttpResponseForbidden('You are not allowed to view these videos')
+    videos = Video.objects.filter(Course=course)
+    return render(request, 'Courses/Videos.html', {'videos': videos})
+def watch_video(request, video_id):
+    video = get_object_or_404(Video, id=video_id)
+    return render(request, 'Courses/Video.html', {'video': video})
