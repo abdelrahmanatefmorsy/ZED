@@ -12,21 +12,22 @@
     font-family: montserrat;
 }
     #signup {
-            width: 50%;
+            width: 30%;
             margin: auto;
             padding: 20px;
-            border: 1px solid #ddd;
+            margin-right: 100px;
+            /* border: 1px solid #ddd; */
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
     h2 {
         text-align: center;
-        color: #267dffba;
+        color: #00aef0;
         margin-bottom: 20px;
     }
 
     label {
         font-weight: 600;
+        color: #00aef0;
     }
     input {
         width: 100%;
@@ -34,6 +35,8 @@
         margin: 10px 0;
         border-radius: 5px;
         border: 2px solid #ddd;
+        box-shadow: 0 0 25px #00aef0;
+
     }
     #but {
         text-align: center;
@@ -41,14 +44,39 @@
     #id_password1{
         type: password;
     }
+    #but button {
+        background-color: #00aef0;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        box-shadow: 0 0 15px #00aef0;
+    }
 </style>
 
 <body>
     {% extends 'Pages/base.html' %}
     {% block content %}
-    <br><br>
-    <div class="container mt-5">
-        <div id="signup">
+    <br>
+        <div class="card bg-dark text-white">
+            <img src="../static/img/bggg.jpg" class="card-img" alt="...">
+            <div class="card-img-overlay">
+                <div class="container mt-5">
+                    <div id="signup">
+                        <h2>Sign Up</h2>
+                        <div id="from">
+                        <form  method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <div id="but"><button type="submit" class="btn">Sign Up</button></div>
+                        </form>
+                    </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        <!-- <div id="signup">
             <h2>Sign Up</h2>
             <div id="from">
             <form  method="post">
@@ -57,8 +85,8 @@
                 <div id="but"><button type="submit" class="btn btn-primary">Sign Up</button></div>
             </form>
         </div>
-        </div>
-    </div><br><br><br>
+        </div> -->
+
 
     {% endblock %}
 
