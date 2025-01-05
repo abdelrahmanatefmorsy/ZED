@@ -86,9 +86,10 @@ def Profile_view(request, username):
     apllied_courses = AppliedCourse.objects.all();
     courses = Course.objects.all()
     if request.user.username == username:
+        print(request.user.username)
         for course in courses:
             for applied_course in apllied_courses:
-                if applied_course.course == course:
+                if applied_course.course == course and applied_course.user == request.user:
                     course.applied = True
                     my_courses.append(course)
     user = get_object_or_404(User, username=username)
