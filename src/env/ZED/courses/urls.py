@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import include
 from.views import index, CourseDay, CourseForm , login_view, signup_view, logout_view, Home,ShowAllCourses, Course_detail,add_course_view
-from.views import update_profile_view , Profile_view , apply_to_course
+from.views import update_profile_view , Profile_view , apply_to_course , update_course
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -17,5 +17,5 @@ urlpatterns = [
     path('update-profile/', update_profile_view, name='update_profile'),
     path('profile/<str:username>/', Profile_view, name='profile'),
     path('apply/<int:course_id>/', apply_to_course, name='apply_to_course'),
-
+    path('update-course/<int:course_id>/', update_course, name='update_course'),
 ]

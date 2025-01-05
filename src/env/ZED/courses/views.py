@@ -104,3 +104,13 @@ def apply_to_course(request, course_id):
         if not AppliedCourse.objects.filter(course=course, user=request.user).exists():
             AppliedCourse.objects.get_or_create(course=course, user=request.user)
     return redirect('profile', username=request.user.username)
+def update_course(request, course_id):
+    course = get_object_or_404(Course, id=course_id)
+    if request.method == 'POST':
+        form = CourseForm(request.POST, request.FILES, instance=course)
+        if form.is_valid():
+            form.save()
+            return redirect('showAllCourses')  # Redirect to a course list view or any other view
+    else:
+        form = CourseForm(instance=course)
+    return render(request, 'Forms/Course/index.html', {'form': form})
