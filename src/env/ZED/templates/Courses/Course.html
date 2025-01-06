@@ -161,6 +161,8 @@
                             <a href="{% url 'update_course' course.id %}" class="btn ">Update Course</a>
                             {% comment %} <a href="{% url 'delete_course' course.id %}" class="btn btn-danger">Delete Course</a> {% endcomment %}
                             <a href="{% url 'upload_video' course.id %}" class="btn ">Add Videos</a>
+                            <a href="{% url 'view_course_videos' course.id %}" class="btn "> Edit Videos</a>
+                            <a href="{% url 'delete_course_confirmation' course.id %}" class="btn btn-danger">Delete Course</a>
                             {% endif %}
                             {%endif%}
                             {% if user.is_authenticated %}

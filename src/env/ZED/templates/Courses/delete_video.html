@@ -1,0 +1,19 @@
+<!-- filepath: /root/ZED/src/env/ZED/templates/Courses/delete_course_confirmation.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Video</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Are you sure you want to delete the Video "{{ video.video_title }}"?</h2>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Yes, delete</button>
+            <a href="{% url 'view_course_videos' video.id %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>

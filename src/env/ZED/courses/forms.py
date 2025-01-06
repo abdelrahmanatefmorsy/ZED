@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class CourseForm(forms.ModelForm):
     class Meta:
         model = Course
-        fields = ['course_name', 'course_description', 'course_duration', 'course_image', 'price', 'course_type']
+        fields = ['course_name', 'course_description', 'course_duration', 'course_image', 'price', 'course_type','State']
         widgets = {
             'course_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Course Name'}),
             'course_description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Course Description'}),
@@ -15,6 +15,7 @@ class CourseForm(forms.ModelForm):
             'course_image': forms.FileInput(attrs={'class': 'form-control', 'placeholder': 'Course Image'}),
             'price': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Price'}),
             'course_type': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Course Type'}),
+            'State': forms.Select(attrs={'class': 'form-control', 'placeholder': 'State'}),
         }
 class UserProfileForm(forms.ModelForm):
     class Meta:
@@ -51,10 +52,11 @@ class LoginForm(forms.Form):
 class VideoForm(forms.ModelForm):
     class Meta:
         model = Video
-        fields = ['video_title', 'video_description', 'video_duration', 'video']
+        fields = ['video_title', 'video_description', 'video_duration', 'video','State']
         widgets = {
             'video_title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Video Title'}),
             'video_description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Video Description'}),
             'video_duration': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Video Duration'}),
             'video': forms.FileInput(attrs={'class': 'form-control', 'placeholder': 'Video'}),
+            'State': forms.Select(attrs={'class': 'form-control', 'placeholder': 'State'}),
         }

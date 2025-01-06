@@ -26,6 +26,10 @@ class UserProfile(models.Model):
     def str(self):
         return self.user.username
 class Course(models.Model):
+    state_choices = [
+        ('active', 'active'),
+        ('inactive', 'inactive'),
+    ]
     COURSE_TYPE_CHOICES = [
         ('user_created', 'User Created'),
         ('apply', 'Apply'),
@@ -48,18 +52,26 @@ class Course(models.Model):
     course_duration = models.IntegerField()
     course_image = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
     created_at = models.DateTimeField(default=datetime.now, blank=True)
-    price = models.IntegerField()
+    price = models.IntegerField(null=True, blank=True)
+    State = models.CharField(max_length=20, choices=state_choices, default='active')
     course_type = models.CharField(max_length=20, choices=COURSE_TYPE_CHOICES, default='apply')
     def str(self):
         return self.course_name
 
 class Video(models.Model):
+    State_choices = [
+        ('active', 'active'),
+        ('inactive', 'inactive'),
+    ]
+    State = models.CharField(max_length=20, choices=State_choices, default='active')
     video_title = models.CharField(max_length=100)
     video_description = models.TextField()
     video_duration = models.IntegerField()
     video = models.FileField(upload_to='videos/%Y/%m/%d/', blank=True)
     created_at = models.DateTimeField(default=datetime.now, blank=True)
     Course = models.ForeignKey('Course', related_name='videos', on_delete=models.CASCADE, null=True, blank=True)
+    State = models.CharField(max_length=20, choices=State_choices, default='active')
+    
     def str(self):
         return self.data_title
 class AppliedCourse(models.Model):

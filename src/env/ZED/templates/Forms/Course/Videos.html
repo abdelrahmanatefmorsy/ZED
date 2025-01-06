@@ -31,11 +31,11 @@
     {% block content %}
     <br><br><br>
     <div id="form_cou" class="container">
-        <h2>Upload Video</h2>
+        <h2> Video</h2>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Upload</button>
+            <button type="submit" class="btn btn-primary">Done</button>
         </form>
     </div><br><br><br>
 {% endblock content %}
