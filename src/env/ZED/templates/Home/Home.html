@@ -9,11 +9,26 @@
     <link rel="stylesheet" href="{% static 'CSS/main.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
-
+<style>
+    #cou-home{
+        border: 1px solid #000;
+        border-radius: 10px;
+    }
+    #img_team{
+        border-radius: 10px;
+    }
+    #cou-home:hover{
+        box-shadow: 0 0 20px var(--main-color);
+    }
+    #carouselExampleCaptions a{
+        background-color:#267dff;;
+        color: #fff;
+    }
+</style>
 <body>
     {% include 'Pages/navbar.html' %}
     {% block content %}
-    <div id="carouselExampleCaptions"  class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-inner ">
             <div class="carousel-item active text-start">
                 <img src="../static/img/hero-bg2.jpg" class="d-block w-100" alt="...">
@@ -22,7 +37,7 @@
                     <h5> Education Courses</h5>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Ab officiis ex sapiente odit quaerat dolorum.</p>
-                    <p><a href="{% url 'showAllCourses' %}" class="btn btn-primary mt-3 btn-lg">more details</a></p>
+                    <p><a href="{% url 'showAllCourses' %}" class="btn  mt-3 btn-lg">more details</a></p>
                 </div>
             </div>
             <div class="carousel-item">
@@ -32,7 +47,7 @@
                     <h5> Education Courses</h5>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Ab officiis ex sapiente odit quaerat dolorum.</p>
-                    <p><a href="{% url 'showAllCourses' %}" class="btn btn-primary mt-3 btn-lg">more details</a></p>
+                    <p><a href="{% url 'showAllCourses' %}" class="btn  mt-3 btn-lg">more details</a></p>
                 </div>
             </div>
             <div class="carousel-item">
@@ -42,7 +57,7 @@
                     <h5> Education Courses</h5>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Ab officiis ex sapiente odit quaerat dolorum.</p>
-                    <p><a href="{% url 'showAllCourses' %}" class="btn btn-primary mt-3 btn-lg">more details</a></p>
+                    <p><a href="{% url 'showAllCourses' %}" class="btn  mt-3 btn-lg">more details</a></p>
 
                 </div>
             </div>
@@ -162,82 +177,44 @@
         </div>
     </section>
     <!-- **************************************************** -->
-    {% comment %} <section id="team" class="services_team section-padding bg">
+    <section id="team" class="services_team section-padding bg">
         <div class="container">
             <p class="fs-1 fw-bold text-center">Our Education Courses</p>
-            <p class="fs-1 fw-bold text-center"><img src="../static/img/book2.png" alt="" width="50px" height="50px"></p>
+            <p class="fs-1 fw-bold text-center"><img src="../static/img/book2.png" alt="" width="50px" height="50px">
+            </p>
             <p class="fs-5 text-center">From concept through construction, to the finishing touches of each of your
                 projects,<br> you can rely on the our
-                team to deliver a personal environment tailored specifically for you</p>
+                team to deliver a personal environment tailored specifically for you</p><br>
             <div class="row row-cols-1 row-cols-md-3 g-4 b b">
+                {% for apply in courses %}
                 <div class="col ">
-                    <div class="card h-100 border-0">
-                        <div class="card_mmm"> <img id="img_team" src="../static/img/blog-1.jpg" class="card-img-top " alt="...">
+                    <div id="cou-home" class="card h-100 border-0">
+                        <div class="card_mmm"> <img id="img_team" src="{{ apply.course_image.url }}" class="card-img "
+                                alt="{{ apply.course_name }}">
                         </div>
                         <div class="card-body text-center">
-                            <h5 class="card-title fs-3 fw-bold">Education CT coaching</h5>
-                            <p class="card-text">We are experts in helping organisations <br>leverage coaching to drive
-                                engagement,
-                                performance and</p>
+                            <h5 class="card-title fs-3 fw-bold">{{ apply.course_name }}</h5>
                             <div id="iii">
-                                <div id="doller"><i class="bi bi-layout-text-sidebar"></i></div>
+                                <div id="doller"><i class="bi bi-journal-code"></i></div>
                                 <div>
                                     <p class="fs-3 fw-bold text-center text-primary"><img id="img_author"
-                                            src="../static/img/blog-author.jpg" alt="" width="70px" height="70px"></p>
+                                            src="../static/img/Profile-PNG-File.png" alt="" width="70px" height="70px">
+                                    </p>
                                 </div>
-                                <div id="doller"><i class="bi bi-currency-dollar">60</i></div>
-                            </div>
-                            <p class="fs-4  text-center">Saruta Janifao</p>
-                            <button type="button">Join Now</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col ">
-                    <div class="card h-100 border-0">
-                        <img src="../static/img/blog-inside-post.jpg" class="card-img-top " alt="...">
-                        <div class="card-body text-center">
-                            <h5 class="card-title fs-3 fw-bold">Students help refugees</h5>
-                            <p class="card-text">We are experts in helping organisations <br>leverage coaching to drive
-                                engagement,
-                                performance and</p>
-                            <div id="iii">
-                                <div id="doller"><i class="bi bi-exclude"></i></div>
-                                <div>
-                                    <p class="fs-3 fw-bold text-center text-primary"><img id="img_author"
-                                            src="../static/img/blog-author.jpg" alt="" width="70px" height="70px"></p>
-                                </div>
-                                <div id="doller"><i class="bi bi-currency-dollar">75</i></div>
-                            </div>
-                            <p class="fs-4  text-center">Mahfuz Riad</p>
-                            <button type="button">Join Now</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col ">
-                    <div class="card h-100 border-0">
-                        <img src="../static/img/blog-inside-post.jpg" class="card-img-top " alt="...">
-                        <div class="card-body text-center">
-                            <h5 class="card-title fs-3 fw-bold">Coaching for CA Exam</h5>
-                            <p class="card-text">We are experts in helping organisations <br> leverage coaching to drive
-                                engagement,
-                                performance and</p>
-                            <div id="iii">
                                 <div id="doller"><i class="bi bi-slack"></i></div>
-                                <div>
-                                    <p class="fs-3 fw-bold text-center text-primary "><img id="img_author"
-                                            src="../static/img/blog-author.jpg" alt="" width="70px" height="70px"></p>
-                                </div>
-                                <div id="doller"><i class="bi bi-currency-dollar">50</i></div>
                             </div>
-                            <p class="fs-4  text-center">Je Faria</p>
-                            <button type="button">Join Now</button>
+                            <p class="fs-4  text-center">By {{apply.publisher}}</p>
+                            <button type="button">SEE MORE</button>
                         </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
         </div>
-    </section>  {% endcomment %}
-    <div class="courses-container">
+    </section>
+
+    <!-- **************************** -->
+    <!-- <div class="courses-container">
         <div class="row row-cols-1 row-cols-md-3 g-4">
             {% for apply in courses %}
             <div class="col">
@@ -254,7 +231,7 @@
 
         </div>
         
-    </div>
+    </div> -->
     <!--services-->
     <section class="container services" id="services_cou">
         <h2 class="hed">My <span>Services</span></h2>
@@ -270,7 +247,7 @@
                             and dynamic web interfaces. I focus on web development, and performance optimization using
                             the
                             latest web technologies.</p>
-                        <a class="btn" href = "{% url 'showAllCourses' %}">See More</a>
+                        <a class="btn" href="{% url 'showAllCourses' %}">See More</a>
                     </div>
                 </div>
             </div>
@@ -285,7 +262,7 @@
                             and dynamic web interfaces. I focus on web development, and performance optimization using
                             the
                             latest web technologies.</p>
-                            <a class="btn" href = "{% url 'showAllCourses' %}">See More</a>
+                        <a class="btn" href="{% url 'showAllCourses' %}">See More</a>
                     </div>
                 </div>
             </div>
@@ -299,7 +276,7 @@
                         <p class="card-text">I am a certified Network Engineer with expertise in Cisco and Microsoft
                             technologies, holding both CCNA and MCSA certifications. My experience includes designing
                             , implementing,and maintaining secure .</p>
-                        <a class="btn" href = "{% url 'showAllCourses' %}">See More</a>
+                        <a class="btn" href="{% url 'showAllCourses' %}">See More</a>
                     </div>
                 </div>
             </div>

@@ -14,17 +14,46 @@
         color: #267dffba;
         font-weight: bold;
     }
-    .card{
+
+    .card {
         margin: auto;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
+
     /* .card #img_team:hover {
     box-shadow: 0 0 16px var(--main-color);
     transition-duration: 400ms;
 } */
+ .services_team #btn-sec button{
+    padding: 0px 20px 0px 20px;
+    height: 40px;
+    color: var(--main-color);
+    font-size: 15px;
+    border-radius: 20px;
+    border-color: var(--main-color);
+    border-width: 1px;
+
+}
+.services_team #btn-sec p{
+    margin:auto;
+    padding: 0px;
+}
+.services_team #btn-sec  button:hover {
+    color: var(--text-color);
+    background-color: var(--main-color);
+    transition-duration: 400ms;
+
+}
+.services_team #btn-sec input{
+    /* border-radius: 20px; */
+    border-color: var(--main-color);
+    border-width: 1px;
+    height: 40px;
+    padding: 0px 20px 0px 20px;
+}
 </style>
 
 <body>
@@ -41,21 +70,41 @@
                         type="submit">Search</button></div>
             </form> -->
             <div class="row justify-content-center">
-                <div class="col-md-6 col-sm-8 col-10 ">
+                <div class="col ">
                     <p class="ttt fs-1 fw-bold text-center">Courses</p>
-                    <p class="fs-1 fw-bold text-center"><img src="../static/img/book2.png" alt="" width="50px" height="50px">
-                    </p> <br>
-                    <form class="d-flex" method="GET" action="{% url 'search_courses' %}">
-                        <input type="text" name="q" style="height: 50px;" class="form-control me-2" placeholder="Your Courses Name">
-                        <button type="submit" class="btn btn-primary">SEARCH COURSES</button>
-                    </form><br>
+                    <p class="fs-1 fw-bold text-center"><img src="../static/img/book2.png" alt="" width="50px"
+                            height="50px">
+                    </p> 
+                    <div class="d-flex justify-content-between ">
+                        <div id="btn-sec" >
+                            <form class="d-flex" method="GET" action="{% url 'search_courses' %}">
+                                <input type="text"  name="q" class="form-control me-2" placeholder="Your Courses Name">
+                                <button  type="submit" class="btn">
+                                    <P >SEARCH</P>
+                                </button>
+                            </form>
+                        </div>
+                        <div id="btn-sec">
+                            {% if user.is_authenticated %}
+                            <a href="{% url 'add_course' %}"><button type="submit" class="btn" >
+                                    <P >Add Course</P>
+                                </button>
+                            </a>
+                            {% else %}
+                            <a href="{% url 'login' %}"><button type="submit" class="btn" >
+                                    <P >Login</P>
+                                </button>
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div><br>
                 </div>
             </div>
             <div class="row row-cols-1 row-cols-md-3 g-4 b b">
                 {% for course, profile in courses %}
                 <div class="col ">
                     <div class="card h-100">
-                        <div  class="card_mmm"> <img height="250px" id="img_team" src="{{ course.course_image.url }}"
+                        <div class="card_mmm"> <img height="250px" id="img_team" src="{{ course.course_image.url }}"
                                 class="card-img " alt="{{ course.course_name }}">
                         </div>
                         <div class="card-body text-center">
@@ -67,26 +116,22 @@
                                     <p class="fs-3 fw-bold text-center text-primary"><img id="img_author"
                                             src="{{profile.profile_picture.url}}" alt="" width="70px" height="70px"></p>
                                 </div>
-                                <div id="doller"><i class="bi bi-currency-dollar">{{ course.price }}</i></div>
+                                <div id="doller"><i class="bi bi-slack"></i></div>
                             </div>
                             <!-- filepath: /root/ZED/src/env/ZED/templates/Courses/Courses.html -->
-                            <a href="{% url 'profile' course.publisher.username %} " style="text-decoration: none;color: #000;">
+                            <a href="{% url 'profile' course.publisher.username %} "
+                                style="text-decoration: none;color: #000;">
                                 <p class="fs-3 text-center">{{ course.publisher.username }}</p>
                             </a>
-                            <a href="{% url 'course_detail' course.id %}"><button type="button">View Details</button></a>
+                            <a href="{% url 'course_detail' course.id %}"><button type="button">View
+                                    Details</button></a>
                         </div>
                     </div>
                 </div>
                 {% endfor %}
             </div>
             <br><br>
-            <div style="text-align: center;">
-            {% if user.is_authenticated %}
-            <a href="{% url 'add_course' %}" class="btn btn-primary mb-3" >Add Course</a>
-            {% else %}
-            <a href="{% url 'login' %}" class="btn btn-primary mb-3">Login</a>
-            {% endif %}
-        </div>
+
         </div>
 
     </section>
