@@ -1,1 +1,80 @@
 
+<!-- filepath: /root/ZED/src/env/ZED/templates/Courses/delete_course_confirmation.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CSS/main.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #1f242d;
+            padding-top: 80px;
+        }
+
+        .image-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .image-container img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px var(--main-color);
+        }
+
+        .image-container p {
+            margin-top: 10px;
+            font-size: 1.2rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: aliceblue;
+            padding: auto;
+        }
+        h5 {
+            width: 300px;
+            color: aliceblue;
+            text-align: center;
+            font-size: 1.2rem;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container py-5">
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="image-container">
+                    <img src="/static/img/adel.jpg" alt="Image 1">
+                    <p>Mohamed Adel</p>
+                    
+                </div><h5> frontend development and design. He is a full-stack developer with a
+                    passion for creating beautiful and user-friendly interfaces.</h5>
+            </div>
+            <div class="col-md-6">
+                <div class="image-container">
+                    <img src="/static/img/atef.jpg" alt="Image 2">
+                    <p>Abdelrahman Atef</p>
+                    <h5> backend development. He is a full-stack developer with a passion
+                        for creating efficient and scalable applications.</h5>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
