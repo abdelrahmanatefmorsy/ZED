@@ -22,7 +22,7 @@
                     <h5> Education Courses</h5>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Ab officiis ex sapiente odit quaerat dolorum.</p>
-                    <p><a href="#" class="btn btn-primary mt-3 btn-lg">more details</a></p>
+                    <p><a href="{% url 'showAllCourses' %}" class="btn btn-primary mt-3 btn-lg">more details</a></p>
                 </div>
             </div>
             <div class="carousel-item">
@@ -32,7 +32,7 @@
                     <h5> Education Courses</h5>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Ab officiis ex sapiente odit quaerat dolorum.</p>
-                    <p><a href="#" class="btn btn-primary mt-3 btn-lg">more details</a></p>
+                    <p><a href="{% url 'showAllCourses' %}" class="btn btn-primary mt-3 btn-lg">more details</a></p>
                 </div>
             </div>
             <div class="carousel-item">
@@ -42,7 +42,7 @@
                     <h5> Education Courses</h5>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Ab officiis ex sapiente odit quaerat dolorum.</p>
-                    <p><a href="#" class="btn btn-primary mt-3 btn-lg">more details</a></p>
+                    <p><a href="{% url 'showAllCourses' %}" class="btn btn-primary mt-3 btn-lg">more details</a></p>
 
                 </div>
             </div>
@@ -74,7 +74,6 @@
                                 voluptas
                                 provident?<br>Learn about
                                 Superintendent </p>
-                            <p class="btu3"><button type="button">Know more future</button></p>
                         </div>
                     </div>
                     <div id="img_about" class="col-md-6 border-0 ">
@@ -156,7 +155,6 @@
                                 voluptas
                                 provident?<br>Learn about
                                 Superintendent </p>
-                            <p class="btu3"><button type="button">Know more future</button></p>
                         </div>
                     </div>
                 </div>
@@ -164,7 +162,7 @@
         </div>
     </section>
     <!-- **************************************************** -->
-    <section id="team" class="services_team section-padding bg">
+    {% comment %} <section id="team" class="services_team section-padding bg">
         <div class="container">
             <p class="fs-1 fw-bold text-center">Our Education Courses</p>
             <p class="fs-1 fw-bold text-center"><img src="../static/img/book2.png" alt="" width="50px" height="50px"></p>
@@ -238,7 +236,25 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>  {% endcomment %}
+    <div class="courses-container">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for apply in courses %}
+            <div class="col">
+                <div class="card h-100">
+                    <img src="{{ apply.course_image.url }}" class="card-img" alt="{{ apply.course_name }}"
+                        height="250">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ apply.course_name }}</h5>
+                        <p class="card-text">By {{apply.publisher}}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+        
+    </div>
     <!--services-->
     <section class="container services" id="services_cou">
         <h2 class="hed">My <span>Services</span></h2>
@@ -254,7 +270,7 @@
                             and dynamic web interfaces. I focus on web development, and performance optimization using
                             the
                             latest web technologies.</p>
-                        <a class="btn">See More</a>
+                        <a class="btn" href = "{% url 'showAllCourses' %}">See More</a>
                     </div>
                 </div>
             </div>
@@ -269,7 +285,7 @@
                             and dynamic web interfaces. I focus on web development, and performance optimization using
                             the
                             latest web technologies.</p>
-                        <a class="btn">See More</a>
+                            <a class="btn" href = "{% url 'showAllCourses' %}">See More</a>
                     </div>
                 </div>
             </div>
@@ -283,7 +299,7 @@
                         <p class="card-text">I am a certified Network Engineer with expertise in Cisco and Microsoft
                             technologies, holding both CCNA and MCSA certifications. My experience includes designing
                             , implementing,and maintaining secure .</p>
-                        <a class="btn">See More</a>
+                        <a class="btn" href = "{% url 'showAllCourses' %}">See More</a>
                     </div>
                 </div>
             </div>
@@ -291,21 +307,8 @@
     </section>
     <!-- ************************************** -->
 
-    <div id="text2" class=" text-center my-5 container">
-        <div class="row justify-content-center">
-            <div class="col-md-6 col-sm-8 col-10 ">
-                <h1>ONLINE <span>COURSES</span> SEARCH</h1><br>
-                <h6>Get more online courses, 4 reasons why you’ll love education</h6><br>
-                <form class="d-flex">
-                    <input type="text"style="height: 50px;"; class="form-control me-2" placeholder="Your Courses Name">
-                    <button type="button">SEARCH COURSES</button>
-                </form><br><br>
-            </div>
-        </div>
-    </div>
     {% endblock content %}
     {% include 'Pages/footer.html' %}
-
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

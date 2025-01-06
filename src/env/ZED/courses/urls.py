@@ -3,7 +3,7 @@ from django.urls import path
 from django.urls import include
 from.views import index, CourseDay, CourseForm , login_view, signup_view, logout_view, Home,ShowAllCourses, Course_detail,add_course_view
 from.views import update_profile_view , Profile_view , apply_to_course , update_course , upload_video ,view_course_videos ,watch_video
-from .views import Edit_Video , delete_course_confirmation ,delete_video_confirmation
+from .views import Edit_Video , delete_course_confirmation ,delete_video_confirmation , search_courses
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
@@ -24,4 +24,6 @@ urlpatterns = [
     path('video/<int:video_id>/edit/', Edit_Video, name='edit_video'),
     path('course/<int:course_id>/delete/', delete_course_confirmation, name='delete_course_confirmation'),
     path('video/<int:video_id>/delete/', delete_video_confirmation, name='delete_video_confirmation'),
+    path('search/', search_courses, name='search_courses'),
+
 ]

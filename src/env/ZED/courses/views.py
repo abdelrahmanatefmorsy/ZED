@@ -7,12 +7,13 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from .models import AppliedCourse , Video
+from django.db.models import Q
 def index(request):
     return render(request, 'index.html')
 
 def Home(request):
-    courses = Course.objects.all()
-    return render(request, 'Home/Home.html', {'courses': courses})
+    courses = Course.objects.all().filter(State = 'active')
+    return render(request, 'Home/Home.html', {'courses': courses[0:3]})
 
 def login_view(request):
     loginform = LoginForm()
@@ -72,6 +73,18 @@ def ShowAllCourses(request):
     print(data[0][0].publisher)
     return render(request, 'Courses/Courses.html', {'courses': data})
 
+def search_courses(request):
+    query = request.GET.get('q')
+    data = []
+    if query:
+        courses = Course.objects.filter(Q(course_name__icontains=query) ,State = 'active')
+        profiles = UserProfile.objects.all()
+        for course in courses:
+            for profile in profiles:
+                if course.publisher == profile.user:
+                    data.append((course, profile))
+    return render(request, 'Courses/Courses.html', {'courses': data})
+
 
 def Course_detail(request, course_id):
     course = Course.objects.get(id=course_id)
@@ -87,7 +100,7 @@ def update_profile_view(request):
         form = UserProfileForm(request.POST, request.FILES, instance=user_profile)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return Profile_view(request, request.user.username)
     else:
         form = UserProfileForm(instance=user_profile)
     return render(request, 'Forms/Profile/update_profile.html', {'form': form})
@@ -131,26 +144,11 @@ def update_course(request, course_id):
         form = CourseForm(request.POST, request.FILES, instance=course)
         if form.is_valid():
             form.save()
-            return redirect('showAllCourses')
+            return Course_detail(request, course_id)
     else:
         form = CourseForm(instance=course)
     return render(request, 'Forms/Course/index.html', {'form': form})
-@login_required
-def upload_video(request, course_id):
-    course = get_object_or_404(Course, id=course_id)
-    if course.publisher == request.user:
-        if request.method == 'POST':
-            form = VideoForm(request.POST, request.FILES)
-            if form.is_valid():
-                video = form.save(commit=False)
-                video.Course = course
-                video.save()
-                return redirect('/') 
-        else:
-            form = VideoForm()
-    else:
-        return HttpResponse('You are not allowed to upload videos to this course')
-    return render(request, 'Forms/Course/Videos.html', {'form': form})
+
 
 @login_required
 def view_course_videos(request, course_id):
@@ -173,6 +171,24 @@ def watch_video(request, video_id):
     return render(request, 'Courses/Video.html', {'video': video})
 
 @login_required
+def upload_video(request, course_id):
+    course = get_object_or_404(Course, id=course_id)
+    if course.publisher == request.user:
+        if request.method == 'POST':
+            form = VideoForm(request.POST, request.FILES)
+            if form.is_valid():
+                video = form.save(commit=False)
+                video.Course = course
+                video.save()
+                return view_course_videos(request, course_id)
+        else:
+            form = VideoForm()
+    else:
+        return HttpResponse('You are not allowed to upload videos to this course')
+    return render(request, 'Forms/Course/Videos.html', {'form': form})
+
+
+@login_required
 def Edit_Video(request, video_id):
     video = get_object_or_404(Video, id=video_id)
     if video.Course.publisher != request.user:
@@ -181,7 +197,7 @@ def Edit_Video(request, video_id):
         form = VideoForm(request.POST, request.FILES, instance=video)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return view_course_videos(request, video.Course.id)
     else:
         form = VideoForm(instance=video)
     return render(request, 'Forms/Course/Videos.html', {'form': form})
@@ -193,7 +209,7 @@ def delete_course_confirmation(request, course_id):
         return HttpResponse('You are not allowed to delete this course')
     if request.method == 'POST':
         course.delete()
-        return redirect('/')
+        return ShowAllCourses(request)
     return render(request, 'Courses/delete_course_confirmation.html', {'course': course})
 
 @login_required
@@ -203,5 +219,5 @@ def delete_video_confirmation(request, video_id):
         return HttpResponse('You are not allowed to delete this course')
     if request.method == 'POST':
         video.delete()
-        return redirect('/')
+        return view_course_videos(request, video.Course.id)
     return render(request, 'Courses/delete_video.html', {'video': video})

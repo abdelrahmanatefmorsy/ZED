@@ -45,9 +45,9 @@
                     <p class="ttt fs-1 fw-bold text-center">Courses</p>
                     <p class="fs-1 fw-bold text-center"><img src="../static/img/book2.png" alt="" width="50px" height="50px">
                     </p> <br>
-                    <form class="d-flex">
-                        <input type="text"style="height: 50px;"; class="form-control me-2" placeholder="Your Courses Name">
-                        <button type="button">SEARCH COURSES</button>
+                    <form class="d-flex" method="GET" action="{% url 'search_courses' %}">
+                        <input type="text" name="q" style="height: 50px;" class="form-control me-2" placeholder="Your Courses Name">
+                        <button type="submit" class="btn btn-primary">SEARCH COURSES</button>
                     </form><br>
                 </div>
             </div>
