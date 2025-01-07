@@ -187,7 +187,7 @@ def upload_video(request, course_id):
                 video = form.save(commit=False)
                 video.Course = course
                 video.save()
-                return view_course_videos(request, course_id)
+            return redirect(reverse('course_detail', kwargs={'course_id': course.id}))
         else:
             form = VideoForm()
     else:

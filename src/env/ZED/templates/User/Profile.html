@@ -34,12 +34,12 @@
         font: 1em sans-serif;
     }
 
-    h2 {
+    .h2-eddit {
         margin-bottom: 30px;
         font: 1em sans-serif;
     }
 
-    p {
+    .p-eddit {
         font: 1em sans-serif;
         font-style: italic;
         font-size: 20px;
@@ -92,33 +92,33 @@
     <br><br>
     <div class="container">
         <div class="mmm">
-        <h1>User Profile</h1><br>
+        <h1 class = "h1-eddit">{{profile.user.username}} Profile</h1><br>
         <div class="card-profile">
             <div class="row">
                 <div class="col-md-8">
                     <div class="profile-details">
-                        <h2>{{ profile.user.username }}</h2>
-                        {% if profile.user.username == request.user.username %}
-                        <p><strong>Email:</strong> {{ profile.user.email }} <span style="color: gray;">(not visible)</span>
+                        <h2 class = "h2-eddit">{{ profile.user.username }}</h2>
+                  {% if profile.user.username == request.user.username %}
+                        <p class = "p-eddit"><strong>Email:</strong> {{ profile.user.email }} <span style="color: gray;">(not visible)</span>
                         </p>
-                        {% endif %}
-                        <p><strong>Date of Birth:</strong> {{ profile.data_birth }}</p>
-                        {% if user.is_authenticated %}
-                        <div id="btn-group">
+                        {% endif %} 
+                        <p class = "p-eddit"><strong>Date of Birth:</strong> {{ profile.data_birth }}</p>
+                         {% if user.is_authenticated %}
+                        <side id="btn-group">
                         {% if profile.user.username == request.user.username %}
                         <a href="{% url 'add_course' %}" class ="btn-group">
                             Add Course
                         </a>
-                    </div>
+                    </side>
                         {% endif %}
                         {% endif %}
                     </div>
                 </div>
-                <div class="col-md-4 text-center">
+                <div class="col-md-3 text-center">
                     {% if profile.profile_picture %}
                     <img src="{{ profile.profile_picture.url }}" alt="Profile Picture" class="img-thumbnail">
                     {% else %}
-                    <p>No profile picture available.</p>
+                    <p class = "p-eddit">No profile picture available.</p>
                     {% endif %}
                     <div class="links mt-3">
                         {% if profile.user.username == request.user.username %}
@@ -157,7 +157,7 @@
         {% comment %} {% if my_course %} {% endcomment %}
       <br><br> 
       {% if request.user.username == profile.user.username %}
-       <h2 class="mt-4">Applied Courses</h2><br>
+       <h2  class="mt-4">Applied Courses</h2><br>
        
         <div class="courses-container">
             <div class="row row-cols-1 row-cols-md-3 g-4">

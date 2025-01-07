@@ -188,7 +188,7 @@
                                 <div id="doller"><i class="bi bi-slack"></i></div>
                             </div>
                             <p class="fs-4  text-center">By {{apply.publisher}}</p>
-                            <button type="button">SEE MORE</button>
+                            <button type="button"><a href = {% url 'showAllCourses' %} style = text-decoration:none>SEE MORE</a></button>
                         </div>
                     </div>
                 </div>
@@ -230,8 +230,8 @@
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Networking</h5>
-                        <p class="card-text">Master the fundamentals of computer networks, from setting up local area networks (LAN) to configuring advanced routing and switching. Learn how to design, implement, and manage robust network infrastructures for businesses</p>
-                        <a class="btn" href="{% url 'showAllCourses' %}">See More</a>
+
+                        <p class="card-text">Learn the basics of computer networks, from LAN setup to advanced routing and switching, and manage business network infrastructures.</p>                        <a class="btn" href="{% url 'showAllCourses' %}">See More</a>
                     </div>
                 </div>
             </div>
