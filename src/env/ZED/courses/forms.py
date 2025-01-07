@@ -50,11 +50,10 @@ class LoginForm(forms.Form):
 class VideoForm(forms.ModelForm):
     class Meta:
         model = Video
-        fields = ['video_title', 'video_description', 'video_duration', 'video','State']
+        fields = ['video_title', 'video_description', 'video','State']
         widgets = {
             'video_title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Video Title'}),
             'video_description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Video Description'}),
-            'video_duration': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Video Duration'}),
             'video': forms.FileInput(attrs={'class': 'form-control', 'placeholder': 'Video'}),
             'State': forms.Select(attrs={'class': 'form-control', 'placeholder': 'State'}),
         }

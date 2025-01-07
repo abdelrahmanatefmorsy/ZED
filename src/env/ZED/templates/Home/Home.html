@@ -7,6 +7,7 @@
     <title>Home</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'CSS/main.css' %}">
+    <link rel="icon" href="/static/img/icon.png">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <style>
@@ -173,7 +174,7 @@
                 {% for apply , profile in courses %}
                 <div class="col ">
                     <div id="cou-home" class="card h-100 border-0">
-                        <div class="card_mmm"> <img id="img_team" src="{{ apply.course_image.url }}" class="card-img "
+                        <div class="card_mmm"> <img id="img_team" width="415px" height="235px" src="{{ apply.course_image.url }}" class="card-img "
                                 alt="{{ apply.course_name }}">
                         </div>
                         <div class="card-body text-center">
@@ -188,7 +189,7 @@
                                 <div id="doller"><i class="bi bi-slack"></i></div>
                             </div>
                             <p class="fs-4  text-center">By {{apply.publisher}}</p>
-                            <button type="button"><a href = {% url 'showAllCourses' %} style = text-decoration:none>SEE MORE</a></button>
+                            <button type="button"><a href = "{% url 'showAllCourses' %}" style = text-decoration:none>SEE MORE</a></button>
                         </div>
                     </div>
                 </div>

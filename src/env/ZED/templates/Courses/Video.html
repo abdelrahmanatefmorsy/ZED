@@ -7,6 +7,7 @@
     <title>watch-video</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'CSS/main.css' %}">
+    <link rel="icon" href="/static/img/icon.png">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <style>
@@ -21,9 +22,12 @@
     text-align: center;
     font-size: 40px;
 }
+
 .custom-video-height {
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            height: 400px; 
+            max-height: 65vh; 
         }
         .card-text {
             font-size: 20px;

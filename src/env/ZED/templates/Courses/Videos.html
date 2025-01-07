@@ -7,6 +7,7 @@
     <title>Videos</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'CSS/main.css' %}">
+    <link rel="icon" href="/static/img/icon.png">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <style>
@@ -21,7 +22,7 @@
         border: 1px solid #ddd;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        width: 80%;
+        width: 100%;
     }
 
     .lesson {
@@ -39,14 +40,14 @@
     }
 
     .lesson-description {
-        width: 400px;
+        width: 250px;
         font-size: 1em;
         color: #666;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
     }
-
+    
     a.watch-video {
         background-color: #267dffba;
         color: white;
@@ -58,6 +59,7 @@
     h2 {
         color: #267dffba;
         font-weight: bold;
+        /* width: 80%; */
     }
     .www{
         text-decoration: none;
@@ -79,11 +81,12 @@
                 {% for video in videos %}
                 <div class="list-group">
                     <div class="lesson d-flex justify-content-between align-items-center">
-                        <div>
-                            <a class="www" href="{% url 'watch_video' video.id %}"><h3 class="lesson-title">{{ video.video_title }}</h3> </a>
-                            <h4 class="lesson-description" title = {{ video.video_description }}>{{ video.video_description }}</h4>
+                        <div class="lesson-content"> 
+                            <a class="www" href="{% url 'watch_video' video.id %}">
+                                <h3 class="lesson-title">{{ video.video_title }}</h3> </a>
+                            <h4 class="lesson-description" title = {{ video.video_description }} >{{ video.video_description }}</h4>
                         </div>
-                        <div>
+                        <div class="lesson-actions">
                             {% if request.user == video.Course.publisher %}
                             <a href="{% url 'edit_video' video.id %}" class=" btn watch-video">Edit </a>
                             <a href="{% url 'delete_video_confirmation' video.id %}" class=" btn watch-video" style="background-color: red;">Delete </a>
