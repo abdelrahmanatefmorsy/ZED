@@ -1,6 +1,6 @@
 # ZED
 
-!(images/screenshot1.png)(home.jpg)
+!(home.jpg)
 
 ZED is a course platform that allows users to easily create and publish their own courses, as well as join available courses on the platform. 
 
