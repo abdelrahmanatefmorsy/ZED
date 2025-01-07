@@ -54,7 +54,7 @@ cd ZED/src/env/ZED/
 #### 4 . Create the enviroment
 
 ```bash
-python -m venv env
+python3 -m venv env
 ```
 #### 5. Activate the virtual environment
 Clone the repository to your local machine using Git:
