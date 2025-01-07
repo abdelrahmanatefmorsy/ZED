@@ -107,7 +107,7 @@ def update_profile_view(request):
         form = UserProfileForm(request.POST, request.FILES, instance=user_profile)
         if form.is_valid():
             form.save()
-            return Profile_view(request, request.user.username)
+            return redirect('showAllCourses')
     else:
         form = UserProfileForm(instance=user_profile)
     return render(request, 'Forms/Profile/update_profile.html', {'form': form})
@@ -151,7 +151,7 @@ def update_course(request, course_id):
         form = CourseForm(request.POST, request.FILES, instance=course)
         if form.is_valid():
             form.save()
-            return Course_detail(request, course_id)
+            return redirect('showAllCourses')
     else:
         form = CourseForm(instance=course)
     return render(request, 'Forms/Course/index.html', {'form': form})
@@ -204,7 +204,7 @@ def Edit_Video(request, video_id):
         form = VideoForm(request.POST, request.FILES, instance=video)
         if form.is_valid():
             form.save()
-            return view_course_videos(request, video.Course.id)
+            return redirect(reverse('course_detail', kwargs={'course_id': video.Course.id}))
     else:
         form = VideoForm(instance=video)
     return render(request, 'Forms/Course/Videos.html', {'form': form})
@@ -216,7 +216,7 @@ def delete_course_confirmation(request, course_id):
         return render(request, 'Pages/error.html')
     if request.method == 'POST':
         course.delete()
-        return ShowAllCourses(request)
+        return redirect('showAllCourses')
     return render(request, 'Courses/delete_course_confirmation.html', {'course': course})
 
 @login_required
@@ -226,7 +226,7 @@ def delete_video_confirmation(request, video_id):
         return render(request, 'Pages/error.html')
     if request.method == 'POST':
         video.delete()
-        return view_course_videos(request, video.Course.id)
+        return redirect(reverse('course_detail', kwargs={'course_id': video.Course.id}))
     return render(request, 'Courses/delete_video.html', {'video': video})
 from django.shortcuts import render
 
