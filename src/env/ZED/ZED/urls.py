@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import include
 from django.conf import settings
+from django.conf.urls import handler404, handler500
+
 from django.conf.urls.static import static
 from django.urls import path, include
 urlpatterns = [
@@ -26,3 +28,5 @@ urlpatterns = [
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+handler404 = 'courses.views.custom_404'
+handler500 = 'courses.views.custom_500'

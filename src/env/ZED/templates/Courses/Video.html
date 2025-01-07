@@ -4,47 +4,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Courses</title>
+    <title>watch-video</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'CSS/main.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <style>
-    .ttt {
-        color: #267dffba;
-        font-weight: bold;
-    }
-    .card{
-        margin: auto;
-            padding: 20px;
-            border: 1px solid #ddd;
+.card {
+    margin: auto;
+    width: 70%;
+    padding: 20px;
+}
+.card-title{
+    color: #267dffba;
+    font-weight: bold;
+    text-align: center;
+    font-size: 40px;
+}
+.custom-video-height {
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    /* .card #img_team:hover {
-    box-shadow: 0 0 16px var(--main-color);
-    transition-duration: 400ms;
-} */
+        }
+        .card-text {
+            font-size: 20px;
+            color: #666;
+        }
 </style>
 <body>
     {% include 'Pages/navbar.html' %}
     {% block content %}
     <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-                <div class="card">
+        <p class="card-title"> {{ video.video_title }} </p>
+                <div class="card border-0">
                     <div class="card-body">
-                        <h5 class="card-title">{{ video.video_title }}</h5>
-                        <p class="card-text">{{ video.video_description }}</p>
-                        <video controls class="w-100">
+                        <video controls class="w-100 custom-video-height" >
                             <source src="{{ video.video.url }}" type="video/mp4">
                             Your  browser does not support the video tag.
                         </video>
+                        <br><br>
+                        <p class="card-text">{{ video.video_description }}</p>
                     </div>
                 </div>
-            </div>
-        </div>
-
     </div>
     {% endblock %}
     {% include 'Pages/footer.html' %}

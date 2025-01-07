@@ -1,12 +1,15 @@
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import handler404, handler500
+
 from django.urls import include
 from.views import index, CourseDay, CourseForm , login_view, signup_view, logout_view, Home,ShowAllCourses, Course_detail,add_course_view
 from.views import update_profile_view , Profile_view , apply_to_course , update_course , upload_video ,view_course_videos ,watch_video
-from .views import Edit_Video , delete_course_confirmation ,delete_video_confirmation , search_courses
+from .views import Edit_Video , delete_course_confirmation ,delete_video_confirmation , search_courses , about_us
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index, name='index'),
+    path('', Home, name='Home'),
+    path('about-us/', about_us, name='about_us'),
     path('login/',login_view , name='login'),
     path('signup/', signup_view, name='signup'),
     path('logout/', logout_view, name='logout'),
@@ -27,3 +30,5 @@ urlpatterns = [
     path('search/', search_courses, name='search_courses'),
 
 ]
+handler404 = 'courses.views.custom_404'
+handler500 = 'courses.views.custom_500'

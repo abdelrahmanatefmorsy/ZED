@@ -103,6 +103,15 @@
                         </p>
                         {% endif %}
                         <p><strong>Date of Birth:</strong> {{ profile.data_birth }}</p>
+                        {% if user.is_authenticated %}
+                        <div id="btn-group">
+                        {% if profile.user.username == request.user.username %}
+                        <a href="{% url 'add_course' %}" class ="btn-group">
+                            Add Course
+                        </a>
+                    </div>
+                        {% endif %}
+                        {% endif %}
                     </div>
                 </div>
                 <div class="col-md-4 text-center">
@@ -134,7 +143,6 @@
                         <img src="{{ course.course_image.url }}" class="card-img" alt="{{ course.course_name }}"height="200px">
                         <div class="card-body">
                             <h5 class="card-title">{{ course.course_name }}</h5>
-                            <p class="card-text"><strong>Price:</strong> ${{ course.price }}</p>
                             <a href="{% url 'course_detail' course.id %}" class="btn-group">View Details</a>
                             {% comment %} <a href="{% url 'upload_video'  %}" class="btn-group">Add Videos</a> {% endcomment %}
                         </div>
@@ -147,9 +155,15 @@
         <p class="text-center text-muted">No courses published yet.</p>
         {% endif %}
         {% comment %} {% if my_course %} {% endcomment %}
-      <br><br>  <h2 class="mt-4">Applied Courses</h2><br>
+      <br><br> 
+      {% if request.user.username == profile.user.username %}
+       <h2 class="mt-4">Applied Courses</h2><br>
+       
         <div class="courses-container">
             <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% if not my_courses %}
+                <p class="text-center text-muted">No courses applied yet.</p>
+                {% endif %}
                 {% for apply in my_courses %}
                 <div class="col">
                     <div class="card h-100">
@@ -167,6 +181,7 @@
             </div>
             
         </div>
+        {% endif %}
         {% comment %} {% endif %} {% endcomment %}
     </div><br><br><br>
     {% endblock %}

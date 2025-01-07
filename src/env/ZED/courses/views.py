@@ -10,10 +10,17 @@ from .models import AppliedCourse , Video
 from django.db.models import Q
 def index(request):
     return render(request, 'index.html')
-
+def about_us(request):
+    return render(request, 'Courses/About.html')
 def Home(request):
+    data = []
     courses = Course.objects.all().filter(State = 'active')
-    return render(request, 'Home/Home.html', {'courses': courses[0:3]})
+    profiles = UserProfile.objects.all()
+    for course in courses:
+        for profile in profiles:
+            if course.publisher == profile.user:
+                data.append((course, profile))
+    return render(request, 'Home/Home.html', {'courses': data[0:3]})
 
 def login_view(request):
     loginform = LoginForm()
@@ -89,7 +96,7 @@ def search_courses(request):
 def Course_detail(request, course_id):
     course = Course.objects.get(id=course_id)
     if request.user != course.publisher and course.State != 'active':
-        return HttpResponseForbidden('You are not allowed to view this course')
+        return render(request, 'Pages/error.html')
     return render(request, 'Courses/Course.html', {'course': course})
 
 
@@ -139,7 +146,7 @@ def apply_to_course(request, course_id):
 def update_course(request, course_id):
     course = get_object_or_404(Course, id=course_id)
     if course.publisher != request.user:
-        return HttpResponse('You are not allowed to update this course')
+        return render(request, 'Pages/error.html')
     if request.method == 'POST':
         form = CourseForm(request.POST, request.FILES, instance=course)
         if form.is_valid():
@@ -154,7 +161,7 @@ def update_course(request, course_id):
 def view_course_videos(request, course_id):
     course = get_object_or_404(Course, id=course_id)
     if not AppliedCourse.objects.filter(course=course, user=request.user).exists() and course.publisher != request.user:
-        return HttpResponseForbidden('You are not allowed to view these videos')
+        return render(request, 'Pages/error.html')
     if course.publisher == request.user:
         videos = Video.objects.filter(Course=course)
     else:
@@ -165,9 +172,9 @@ def view_course_videos(request, course_id):
 def watch_video(request, video_id):
     video = get_object_or_404(Video, id=video_id)
     if request.user != video.Course.publisher and video.State != 'active':
-        return HttpResponseForbidden('You are not allowed to view this video')
+        return render(request, 'Pages/error.html')
     if not AppliedCourse.objects.filter(course=video.Course, user=request.user).exists() and video.Course.publisher != request.user:
-        return HttpResponseForbidden('You are not allowed to view this video')
+        return render(request, 'Pages/error.html')
     return render(request, 'Courses/Video.html', {'video': video})
 
 @login_required
@@ -184,7 +191,7 @@ def upload_video(request, course_id):
         else:
             form = VideoForm()
     else:
-        return HttpResponse('You are not allowed to upload videos to this course')
+        return render(request, 'Pages/error.html')
     return render(request, 'Forms/Course/Videos.html', {'form': form})
 
 
@@ -192,7 +199,7 @@ def upload_video(request, course_id):
 def Edit_Video(request, video_id):
     video = get_object_or_404(Video, id=video_id)
     if video.Course.publisher != request.user:
-        return HttpResponse('You are not allowed to update this course')
+        return render(request, 'Pages/error.html')
     if request.method == 'POST':
         form = VideoForm(request.POST, request.FILES, instance=video)
         if form.is_valid():
@@ -206,7 +213,7 @@ def Edit_Video(request, video_id):
 def delete_course_confirmation(request, course_id):
     course = get_object_or_404(Course, id=course_id)
     if course.publisher != request.user:
-        return HttpResponse('You are not allowed to delete this course')
+        return render(request, 'Pages/error.html')
     if request.method == 'POST':
         course.delete()
         return ShowAllCourses(request)
@@ -216,8 +223,15 @@ def delete_course_confirmation(request, course_id):
 def delete_video_confirmation(request, video_id):
     video = get_object_or_404(Video, id=video_id)
     if video.Course.publisher != request.user:
-        return HttpResponse('You are not allowed to delete this course')
+        return render(request, 'Pages/error.html')
     if request.method == 'POST':
         video.delete()
         return view_course_videos(request, video.Course.id)
     return render(request, 'Courses/delete_video.html', {'video': video})
+from django.shortcuts import render
+
+def custom_404(request, exception):
+    return render(request, 'Pages/error.html', status=404)
+
+def custom_500(request):
+    return render(request, 'Pages/error.html', status=500)
