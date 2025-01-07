@@ -39,6 +39,13 @@ Clone the repository to your local machine using Git:
 git clone https://github.com/abdelrahmanatefmorsy/ZED
 ```
 #### 3. Change Directory To manage.py 
+- On Windows
+
+```bash
+cd .\ZED\src\env\ZED\
+```
+- On macOS/Linux
+
 ```bash
 cd ZED/src/env/ZED/ 
 ```
@@ -53,12 +60,12 @@ Clone the repository to your local machine using Git:
  - On Windows
  
    ```bash
-   venv\bin\activate
+   env\bin\activate
    ```
 - On macOS/Linux
 
    ```bash
-   source venv/bin/activate
+   source env/bin/activate
    ```
 
 #### 6. Install Dependencies
