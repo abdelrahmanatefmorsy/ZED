@@ -38,12 +38,16 @@ Clone the repository to your local machine using Git:
 ```bash
 git clone https://github.com/abdelrahmanatefmorsy/ZED
 ```
-#### 3 . Create the enviroment
+#### 3. Change Directory To manage.py 
+```bash
+cd ZED/src/env/ZED/ 
+```
+#### 4 . Create the enviroment
 
 ```bash
 python -m venv env
 ```
-#### 4. Activate the virtual environment
+#### 5. Activate the virtual environment
 Clone the repository to your local machine using Git:
 
  - On Windows
@@ -57,14 +61,10 @@ Clone the repository to your local machine using Git:
    source venv/bin/activate
    ```
 
-#### 5. Install Dependencies
+#### 6. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
-```
-#### 6. Change Directory To manage.py 
-```bash
-cd .\src\env\ZED\ 
 ```
 #### 7. Configure the Database
 
