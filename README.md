@@ -12,7 +12,7 @@ ZED aims to create a collaborative learning environment that facilitates knowled
 - [Usage](#Usage)
 - [Technologies Used](#technologies-used)
 - [Future Features](#Future-Features)
-- [Screenshots](#screenshots)
+- [Screenshots](#Screenshots)
 - [Contributors](#Contributors)
 
 
@@ -157,6 +157,29 @@ This project is built using the following technologies:
 - **Course Certification**: Provide certificates for users who complete a course successfully.
 - **User Messaging**: Add a messaging system for users to interact with instructors or fellow students.
 - **Instructor Dashboard**: Add a dashboard for course Publisher to manage their courses, Users, and video content more efficiently.
+
+## Screenshots
+
+### Courses Page
+![Course Page](imgs/Courses-page.jpg)
+
+### Sign Up Page
+![Log in](imgs/sign-up-page.jpg)
+
+### Login Page
+![Sign Up](imgs/login-page.jpg)
+
+### Course Details
+![Course Details](imgs/course-details.jpg)
+
+### User Profile
+![User Profile](imgs/user-profile.jpg)
+
+### Videos Page
+![Videos Page](imgs/videos.jpg)
+
+### Video Page
+![Video](imgs/video.jpg)
 
 
 ## Contributors
