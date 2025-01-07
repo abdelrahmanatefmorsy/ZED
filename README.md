@@ -62,7 +62,7 @@ Clone the repository to your local machine using Git:
  - On Windows
  
    ```bash
-   env\bin\activate
+   env\Scripts\activate
    ```
 - On macOS/Linux
 
@@ -73,8 +73,13 @@ Clone the repository to your local machine using Git:
 #### 6. Install Dependencies
 
 ```bash
-pip install -r requirements.txt
+pip install django
 ```
+
+```bash
+pip install pillow
+```
+
 #### 7. Configure the Database
 
 ```bash
